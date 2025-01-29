@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
     private bool isClimbing;
 
     [SerializeField] private float walkSpeed = 5; //normal walking speed
-    [SerializeField] private float jumpForce = 5; //normal jumping strength
+    [SerializeField] private float jumpForce = 4; //normal jumping strength
     private float gravForce = 2f; //adjusted gravity
     private float scaleFactor = 0.5f; //used to resize character model
 
