@@ -6,9 +6,10 @@ public class PlayerMove : MonoBehaviour
 {
     private Rigidbody2D body;
     private Animator animator;
-    private bool isGrounded;
+    private bool onGround;
     private bool onLadder;
     private bool isClimbing;
+    private bool isGrounded;
 
     [SerializeField] private float walkSpeed = 5; //normal walking speed
     [SerializeField] private float jumpForce = 4; //normal jumping strength
@@ -47,7 +48,7 @@ public class PlayerMove : MonoBehaviour
         SetDirection(horizontalInput);
 
         //Jumping (included here as key presses may not be detected in FixedUpdate)
-        if(Input.GetKey(KeyCode.Z) && isGrounded && !onLadder)
+        if(Input.GetKey(KeyCode.Z) && onGround && !onLadder)
         {
             Jump();
         }
@@ -59,7 +60,7 @@ public class PlayerMove : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         //Walking
-        if(isGrounded || onLadder)
+        if(onGround || onLadder)
         {
             Walk(horizontalInput);
         }
@@ -69,9 +70,10 @@ public class PlayerMove : MonoBehaviour
         {
             isClimbing = true;
         } 
-        else if(onLadder && !isGrounded) //if the player lands at the top of the ladder (not isGrounded)
+        else if(onLadder && !onGround) //if the player lands at the top of the ladder (not onGround)
         {
             isClimbing = true;
+            isGrounded = true;
         }
 
         if(isClimbing)
@@ -116,6 +118,7 @@ public class PlayerMove : MonoBehaviour
     {
         if(collision.gameObject.tag == "ground")
         {
+            onGround = true;
             isGrounded = true;
         }
     }
@@ -124,6 +127,7 @@ public class PlayerMove : MonoBehaviour
     {
         if(collision.gameObject.tag == "ground")
         {
+            onGround = false;
             isGrounded = false;
         }
     }
@@ -133,6 +137,7 @@ public class PlayerMove : MonoBehaviour
         if(collider.gameObject.tag == "ladder")
         {
             onLadder = true;
+            isGrounded = true;
         }
     }
     
