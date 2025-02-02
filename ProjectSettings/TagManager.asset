@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ground
   - ladder
+  - token
   layers:
   - Default
   - TransparentFX
