@@ -109,11 +109,6 @@ public class PlayerMove : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, jumpForce);
     }
 
-    private void Climb(float input)
-    {
-        body.velocity = new Vector2(body.velocity.x, input*walkSpeed);
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "ground")
