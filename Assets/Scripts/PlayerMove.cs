@@ -46,12 +46,6 @@ public class PlayerMove : MonoBehaviour
 
         //Set the direction of the character model
         SetDirection(horizontalInput);
-
-        //Jumping (included here as key presses may not be detected in FixedUpdate)
-        if(Input.GetKey(KeyCode.Z) && onGround && !onLadder)
-        {
-            Jump();
-        }
     }
 
     private void FixedUpdate()
@@ -62,7 +56,13 @@ public class PlayerMove : MonoBehaviour
         //Walking
         if(onGround || onLadder)
         {
-            Walk(horizontalInput);
+            body.velocity = new Vector2(horizontalInput*walkSpeed, body.velocity.y);
+        }
+
+        //Jumping
+        if(Input.GetKey(KeyCode.UpArrow) && onGround && !onLadder)
+        {
+            body.velocity = new Vector2(body.velocity.x, jumpForce);
         }
 
         //Climbing
@@ -97,16 +97,6 @@ public class PlayerMove : MonoBehaviour
         {
             transform.localScale = new Vector3(-scaleFactor, scaleFactor, scaleFactor);
         }
-    }
-
-    private void Walk(float input)
-    {
-        body.velocity = new Vector2(input*walkSpeed, body.velocity.y);
-    }
-
-    private void Jump()
-    {
-        body.velocity = new Vector2(body.velocity.x, jumpForce);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

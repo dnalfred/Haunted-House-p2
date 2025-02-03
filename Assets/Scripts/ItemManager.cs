@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TokenManager : MonoBehaviour
+public class ItemManager : MonoBehaviour
 {
     private ScoreController _scoreController;
-    private int _tokenScore = 100; //score for each token collected
+    private int _itemScore_token = 10; //score for each token collected
 
     private void Awake()
     {
@@ -13,16 +13,10 @@ public class TokenManager : MonoBehaviour
         _scoreController = FindObjectOfType<ScoreController>();
     }
 
-    private void Start()
-    {
-        //initialise score to 8 using ResetScore
-        _scoreController.ResetScore();
-    }
-
     private void AddItemScore()
     {
         //add token score to player score
-        _scoreController.AddScore(_tokenScore);
+        _scoreController.AddScore(_itemScore_token);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
