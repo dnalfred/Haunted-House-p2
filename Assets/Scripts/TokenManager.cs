@@ -5,7 +5,7 @@ using UnityEngine;
 public class TokenManager : MonoBehaviour
 {
     private ScoreController _scoreController;
-    private int _tokenScore = 100; //score for each token collected
+    private int _tokenScore = 10; //score for each token collected
 
     private void Awake()
     {
@@ -13,24 +13,13 @@ public class TokenManager : MonoBehaviour
         _scoreController = FindObjectOfType<ScoreController>();
     }
 
-    private void Start()
-    {
-        //initialise score to 8 using ResetScore
-        _scoreController.ResetScore();
-    }
-
-    private void AddItemScore()
-    {
-        //add token score to player score
-        _scoreController.AddScore(_tokenScore);
-    }
-
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        //on collision with the player, the token is destroyed and player's score is increased
         if(collider.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            AddItemScore();
+            _scoreController.AddScore(_tokenScore);
         }
     }
 }

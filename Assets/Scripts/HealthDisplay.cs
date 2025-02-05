@@ -5,19 +5,28 @@ using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour
 {
-    public int tempMaxHealth = 5;
-    public int tempHealth = 3;
+    public int displayHealth = 3;
     public Image[] hearts;
 
-    private void Update() {
-
-        for(int i = 0; i < hearts.Length; i++) {
-
-            if(i < tempHealth) {
+    private void Update() 
+    {
+        //displays hearts from hearts array based on current displayHealth value
+        for(int i = 0; i < hearts.Length; i++) 
+        {
+            if(i < displayHealth) 
+            {
                 hearts[i].enabled = true;
-            } else {
+            } 
+            else 
+            {
                 hearts[i].enabled = false;
             }
         }
+    }
+
+    //function to update displayHealth value
+    public void updateHealth(HealthController healthController)
+    {
+        displayHealth = healthController.health;
     }
 }

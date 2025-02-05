@@ -9,9 +9,11 @@ public class ScoreDisplay : MonoBehaviour
 
     private void Awake()
     {
+        //find TMP field (which will contain the score value for display)
         _scoreText = GetComponent<TMP_Text>();
     }
 
+    //function to update _scoreText (displayed score)
     public void updateScore(ScoreController scoreController)
     {
         _scoreText.text = $"Score: {scoreController.score}";

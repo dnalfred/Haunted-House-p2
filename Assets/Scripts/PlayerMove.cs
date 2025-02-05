@@ -38,7 +38,6 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
 
         //Parameters for animation
         animator.SetBool("Walking", horizontalInput !=0);
@@ -53,19 +52,19 @@ public class PlayerMove : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        //Walking
+        //walking
         if(onGround || onLadder)
         {
             body.velocity = new Vector2(horizontalInput*walkSpeed, body.velocity.y);
         }
 
-        //Jumping
+        //jumping
         if(Input.GetKey(KeyCode.UpArrow) && onGround && !onLadder)
         {
             body.velocity = new Vector2(body.velocity.x, jumpForce);
         }
 
-        //Climbing
+        //sets isClimbing value
         if(onLadder && Mathf.Abs(verticalInput) > 0f)
         {
             isClimbing = true;
@@ -76,6 +75,7 @@ public class PlayerMove : MonoBehaviour
             isGrounded = true;
         }
 
+        //climbing
         if(isClimbing)
         {
             body.gravityScale = 0f;
@@ -87,6 +87,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    //function to set the direction the player's character model is facing
     private void SetDirection(float input)
     {
         if(input > 0.0f)
@@ -99,6 +100,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    //function to detect collisions with ground objects
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "ground")
@@ -108,6 +110,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    //function to detect if collision with ground object has ceased
     private void OnCollisionExit2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "ground")
@@ -117,6 +120,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    //function to detect collision with ladder objects (trigger)
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.tag == "ladder")
@@ -126,6 +130,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
     
+    //function to detect of collision with ladder objects (trigger) has ceased
     private void OnTriggerExit2D(Collider2D collider)
     {
         if(collider.gameObject.tag == "ladder")
