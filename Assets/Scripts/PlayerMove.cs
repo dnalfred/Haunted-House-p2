@@ -20,8 +20,8 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         //Finds components for Player Rigidbody
-        body = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-        animator = GameObject.Find("Player").GetComponent<Animator>();
+        body = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -44,7 +44,8 @@ public class PlayerMove : MonoBehaviour
         animator.SetBool("Grounded", isGrounded);
 
         //Set the direction of the character model
-        SetDirection(horizontalInput);
+        if(Mathf.Abs(horizontalInput) > 0f)
+            SetDirection(horizontalInput);
     }
 
     private void FixedUpdate()
@@ -54,21 +55,17 @@ public class PlayerMove : MonoBehaviour
 
         //walking
         if(onGround || onLadder)
-        {
-            body.velocity = new Vector2(horizontalInput*walkSpeed, body.velocity.y);
-        }
+            Walk(horizontalInput);
 
         //jumping
         if(Input.GetKey(KeyCode.UpArrow) && onGround && !onLadder)
-        {
-            body.velocity = new Vector2(body.velocity.x, jumpForce);
-        }
+            Jump();
 
         //sets isClimbing value
         if(onLadder && Mathf.Abs(verticalInput) > 0f)
         {
             isClimbing = true;
-        } 
+        }
         else if(onLadder && !onGround) //if the player lands at the top of the ladder (not onGround)
         {
             isClimbing = true;
@@ -91,52 +88,51 @@ public class PlayerMove : MonoBehaviour
     private void SetDirection(float input)
     {
         if(input > 0.0f)
-        {
             transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
-        } 
+
         else if(input < 0.0f)
-        {
             transform.localScale = new Vector3(-scaleFactor, scaleFactor, scaleFactor);
-        }
+    }
+
+    private void Walk(float input)
+    {
+        body.velocity = new Vector2(input*walkSpeed, body.velocity.y);
+    }
+
+    private void Jump()
+    {
+        body.velocity = new Vector2(body.velocity.x, jumpForce);
     }
 
     //function to detect collisions with ground objects
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "ground")
-        {
             onGround = true;
             isGrounded = true;
-        }
     }
 
     //function to detect if collision with ground object has ceased
     private void OnCollisionExit2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "ground")
-        {
             onGround = false;
             isGrounded = false;
-        }
     }
 
     //function to detect collision with ladder objects (trigger)
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.tag == "ladder")
-        {
             onLadder = true;
             isGrounded = true;
-        }
     }
     
     //function to detect of collision with ladder objects (trigger) has ceased
     private void OnTriggerExit2D(Collider2D collider)
     {
         if(collider.gameObject.tag == "ladder")
-        {
             onLadder = false;
             isClimbing = false;
-        }
     }
 }
