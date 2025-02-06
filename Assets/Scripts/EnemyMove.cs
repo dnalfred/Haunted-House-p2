@@ -11,6 +11,9 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private float flyForce = 4; //additional flying force
     private float gravForce = 2f; //adjusted gravity
     private float scaleFactor = 0.5f; //used to resize character model | NOT USED
+    [SerializeField] private float leftBoundary = 8;
+    [SerializeField] private float rightBoundary = -8;
+    private float direction = 1;
 
     private void Awake()
     {
@@ -30,6 +33,15 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
-        body.velocity = new Vector2(flySpeed*-1, body.velocity.y);
+        if(transform.position.x > rightBoundary || transform.position.x < leftBoundary)
+        {
+            SetDirection();
+        }
+        body.velocity = new Vector2(flySpeed*direction, body.velocity.y);
+    }
+
+    private void SetDirection()
+    {
+        direction = direction*-1;
     }
 }
