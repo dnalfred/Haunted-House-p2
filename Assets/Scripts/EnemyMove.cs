@@ -8,40 +8,79 @@ public class EnemyMove : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private float flySpeed = 3; //constant flying speed
-    [SerializeField] private float flyForce = 4; //additional flying force
-    private float gravForce = 2f; //adjusted gravity
+    private float gravForce = 2f; //adjusted gravity | NOT USED
     private float scaleFactor = 0.5f; //used to resize character model | NOT USED
+    private float direction = 1;
+    private bool isTurning = false;
+    private float flyingHeight;
+
     [SerializeField] private float leftBoundary = 8;
     [SerializeField] private float rightBoundary = -8;
-    private float direction = 1;
+
+    private float minPauseTime = 0;
+    private float maxPauseTime = 3;
+    private float pauseTime;
+
+    private Rigidbody2D otherBody;
 
     private void Awake()
     {
-        //Finds components for enemy Rigidbody
+        //finds components for enemy Rigidbody
         body = gameObject.GetComponent<Rigidbody2D>();
         // animator = gameObject.GetComponent<Animator>();
     }
 
     private void Start()
     {
-        // //Stop character model from rotating
+        //stop character model from rotating
         body.freezeRotation = true;
 
-        // //Set character gravity scale to 0 while flying
+        //set character gravity scale to 0 while flying
         body.gravityScale = 0;
+
+        flyingHeight = transform.position.y;
+
+        pauseTime = Random.Range(minPauseTime, maxPauseTime);
+        // pauseTime = Mathf.Ceil(Random.Range(minPauseTime, maxPauseTime));
+        // Debug.Log(pauseTime);
     }
 
     private void Update()
     {
-        if(transform.position.x > rightBoundary || transform.position.x < leftBoundary)
+        //checks if the enemy has reached a specified boundary position
+        if(!isTurning && (transform.position.x > rightBoundary || transform.position.x < leftBoundary))
         {
-            SetDirection();
+            StartCoroutine(ChangeDirection());
         }
+
+        //enemy flies until it reaches a boundary or detects/hits the player
+        Fly();
+    }
+
+    IEnumerator ChangeDirection()
+    {
+        isTurning = true;
+        yield return new WaitForSeconds(pauseTime);
+        direction = direction*-1; //flips direction of movement
+        yield return new WaitForSeconds(0.5f);
+        isTurning = false;
+    }
+
+    private void Fly()
+    {
         body.velocity = new Vector2(flySpeed*direction, body.velocity.y);
     }
 
-    private void SetDirection()
+    private void HuntPlayer()
     {
-        direction = direction*-1;
+        //this works
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.tag == "Player")
+        {
+           HuntPlayer();
+        }
     }
 }
