@@ -13,12 +13,6 @@ public class ItemManager : MonoBehaviour
         _scoreController = FindObjectOfType<ScoreController>();
     }
 
-    private void Start()
-    {
-        //initialise score to 0 using ResetScore
-        _scoreController.ResetScore();
-    }
-
     private void OnTriggerEnter2D(Collider2D collider)
     {
         //on collision with the player, the item is destroyed and player's score is increased

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour
 {
-    public int displayHealth = 3;
+    public int displayHealth;
     public Image[] hearts;
 
     private void Update() 
