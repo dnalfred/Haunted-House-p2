@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // public GameOverScreen gameOverScreen;
-    private ScoreController scoreController;
-    private HealthController healthController;
+    public GameOverDisplay _GameOverDisplay;
+    private ScoreController _ScoreController;
+    private HealthController _HealthController;
 
     private void Awake()
     {
         //hide game over screen when game starts
-        // gameOverScreen.HideGameOver();
+        _GameOverDisplay.HideGameOver();
 
         //find player object's health controller
-        healthController = FindObjectOfType<HealthController>();
+        _HealthController = FindObjectOfType<HealthController>();
 
         //find player objects's score controller
-        scoreController = FindObjectOfType<ScoreController>();
+        _ScoreController = FindObjectOfType<ScoreController>();
     }
 
     private void Start()
     {
         //initialise health at start of game
-        healthController.ResetHealth();
+        _HealthController.ResetHealth();
 
         //initialise score at start of game
-        scoreController.ResetScore();
+        _ScoreController.ResetScore();
     }
 
     private void GameOver()
     {
-        // gameOverScreen.DisplayGameOver(scoreController.score);
+        _GameOverDisplay.DisplayGameOver(_ScoreController.score);
     }
 }
