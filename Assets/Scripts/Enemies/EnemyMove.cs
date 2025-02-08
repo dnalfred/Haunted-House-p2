@@ -7,7 +7,7 @@ public class EnemyMove : MonoBehaviour
     private Rigidbody2D body;
     private Animator animator;
 
-    [SerializeField] private float flySpeed = 3; //constant flying speed
+    [SerializeField] private float flySpeed = 4; //constant flying speed
     private float gravForce = 2f; //adjusted gravity | NOT USED
     private float scaleFactor = 0.5f; //used to resize character model | NOT USED
     private float direction = 1;
