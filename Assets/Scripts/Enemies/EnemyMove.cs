@@ -18,7 +18,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private float rightBoundary = -8;
 
     private float minPauseTime = 0;
-    private float maxPauseTime = 3;
+    private float maxPauseTime = 2;
     private float pauseTime;
 
     private Rigidbody2D otherBody;

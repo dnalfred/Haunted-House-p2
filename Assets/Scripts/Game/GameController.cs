@@ -29,8 +29,16 @@ public class GameController : MonoBehaviour
         _ScoreController.ResetScore();
     }
 
+    private void Update()
+    {
+        if(_HealthController.health == 0)
+        {
+            GameOver();
+        }
+    }
+
     private void GameOver()
     {
-        _GameOverDisplay.DisplayGameOver(_ScoreController.score);
+        _GameOverDisplay.ShowGameOver(_ScoreController.score);
     }
 }
