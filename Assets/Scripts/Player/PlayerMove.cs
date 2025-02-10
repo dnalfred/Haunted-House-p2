@@ -45,7 +45,9 @@ public class PlayerMove : MonoBehaviour
 
         //Set the direction of the character model
         if(Mathf.Abs(horizontalInput) > 0f)
+        {
             SetDirection(horizontalInput);
+        }
     }
 
     private void FixedUpdate()
@@ -55,11 +57,15 @@ public class PlayerMove : MonoBehaviour
 
         //walking
         if(onGround || onLadder)
+        {
             Walk(horizontalInput);
+        }
 
         //jumping
         if(Input.GetKey(KeyCode.UpArrow) && onGround && !onLadder)
+        {
             Jump();
+        }
 
         //sets isClimbing value
         if(onLadder && Mathf.Abs(verticalInput) > 0f)
@@ -88,10 +94,13 @@ public class PlayerMove : MonoBehaviour
     private void SetDirection(float input)
     {
         if(input > 0.0f)
+        {
             transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
-
+        }
         else if(input < 0.0f)
+        {
             transform.localScale = new Vector3(-scaleFactor, scaleFactor, scaleFactor);
+        }
     }
 
     private void Walk(float input)
@@ -108,31 +117,39 @@ public class PlayerMove : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "ground")
+        {
             onGround = true;
             isGrounded = true;
+        }
     }
 
     //function to detect if collision with ground object has ceased
     private void OnCollisionExit2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "ground")
+        {
             onGround = false;
             isGrounded = false;
+        }
     }
 
     //function to detect collision with ladder objects (trigger)
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.tag == "ladder")
+        {
             onLadder = true;
             isGrounded = true;
+        }
     }
     
     //function to detect of collision with ladder objects (trigger) has ceased
     private void OnTriggerExit2D(Collider2D collider)
     {
         if(collider.gameObject.tag == "ladder")
+        {
             onLadder = false;
             isClimbing = false;
+        }
     }
 }
