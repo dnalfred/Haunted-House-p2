@@ -8,20 +8,15 @@ public class EnemyMove : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private float flySpeed = 4; //constant flying speed
-    private float gravForce = 2f; //adjusted gravity | NOT USED
     private float scaleFactor = 0.5f; //used to resize character model | NOT USED
     private float direction = 1;
     private bool isTurning = false;
-    private float flyingHeight;
 
     [SerializeField] private float leftBoundary = 8;
     [SerializeField] private float rightBoundary = -8;
-
     private float minPauseTime = 0;
     private float maxPauseTime = 2;
     private float pauseTime;
-
-    private Rigidbody2D otherBody;
 
     private void Awake()
     {
@@ -37,8 +32,6 @@ public class EnemyMove : MonoBehaviour
 
         //set character gravity scale to 0 while flying
         body.gravityScale = 0;
-
-        flyingHeight = transform.position.y;
 
         pauseTime = Random.Range(minPauseTime, maxPauseTime);
         // pauseTime = Mathf.Ceil(Random.Range(minPauseTime, maxPauseTime));
@@ -63,7 +56,7 @@ public class EnemyMove : MonoBehaviour
         yield return new WaitForSeconds(pauseTime);
         direction = direction*-1; //flips direction of movement
         yield return new WaitForSeconds(0.5f);
-        isTurning = false;
+        isTurning = false; //reset isTurning
     }
 
     private void Fly()

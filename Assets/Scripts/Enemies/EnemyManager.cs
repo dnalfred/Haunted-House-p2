@@ -12,19 +12,15 @@ public class EnemyManager : MonoBehaviour
         _healthController = FindObjectOfType<HealthController>();
     }
 
-    private void Start()
-    {
-        //initialise health to 3 using ResetHealth | NOT TESTED
-        _healthController.ResetHealth();
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
             //remove one heart (life) from displayed hearts
            _healthController.RemoveHealth();
+
+            //TEMP TO REMOVE
+           Destroy(gameObject);
         }
     }
 }

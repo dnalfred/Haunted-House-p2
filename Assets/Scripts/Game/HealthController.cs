@@ -9,23 +9,26 @@ public class HealthController : MonoBehaviour
     public int health { get; private set; }
     public UnityEvent OnHealthChanged;
 
-    //function to deduct 1 from health
-    public void RemoveHealth() {
+    //deduct 1 from health
+    public void RemoveHealth() 
+    {
         health -= 1;
         OnHealthChanged.Invoke();
     }
 
-    //function to add 1 to health (up to maxHealth)
-    public void AddHealth() {
-        
-        if(health < maxHealth) {
+    //add 1 to health (up to maxHealth)
+    public void AddHealth() 
+    {    
+        if(health < maxHealth) 
+        {
             health += 1;
             OnHealthChanged.Invoke();
         }
     }
 
-    //function to reset health to 3 | NOT TESTED
-    public void ResetHealth() {
+    //resets health to 3
+    public void ResetHealth() 
+    {
         health = 3;
         OnHealthChanged.Invoke();
     }
