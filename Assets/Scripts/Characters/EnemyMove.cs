@@ -6,6 +6,7 @@ public class EnemyMove : MonoBehaviour
 {
     private Rigidbody2D body;
     private Animator animator;
+    private HealthController _HealthController;
 
     [SerializeField] private float flySpeed = 4; //constant flying speed
     private float scaleFactor = 0.5f; //used to resize character model | NOT USED
@@ -23,6 +24,8 @@ public class EnemyMove : MonoBehaviour
         //finds components for enemy Rigidbody
         body = gameObject.GetComponent<Rigidbody2D>();
         // animator = gameObject.GetComponent<Animator>();
+
+        _HealthController = FindObjectOfType<HealthController>();
     }
 
     private void Start()
@@ -74,6 +77,18 @@ public class EnemyMove : MonoBehaviour
         if(collider.gameObject.tag == "Player")
         {
            HuntPlayer();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            //remove one heart (life) from displayed hearts
+           _HealthController.RemoveHealth();
+
+            //TEMP TO REMOVE
+           Destroy(gameObject);
         }
     }
 }
