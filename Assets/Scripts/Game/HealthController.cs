@@ -8,12 +8,14 @@ public class HealthController : MonoBehaviour
     private int maxHealth = 5;
     public int health { get; private set; }
     public UnityEvent OnHealthChanged;
+    public bool isInjured = false;
 
     //deduct 1 from health
-    public void RemoveHealth() 
+    public void DeductHealth() 
     {
         health -= 1;
         OnHealthChanged.Invoke();
+        isInjured = true;
     }
 
     //add 1 to health (up to maxHealth)

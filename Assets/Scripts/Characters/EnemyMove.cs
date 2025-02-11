@@ -50,7 +50,14 @@ public class EnemyMove : MonoBehaviour
         }
 
         //enemy flies until it reaches a boundary or detects/hits the player
-        Fly();
+        if(_HealthController.isInjured == false)
+        {
+            Fly();
+        }
+        else
+        {
+            Freeze();
+        }
     }
 
     IEnumerator ChangeDirection()
@@ -65,6 +72,11 @@ public class EnemyMove : MonoBehaviour
     private void Fly()
     {
         body.velocity = new Vector2(flySpeed*direction, body.velocity.y);
+    }
+
+    private void Freeze()
+    {
+        body.velocity = new Vector2(0, 0);
     }
 
     private void HuntPlayer()
@@ -85,7 +97,7 @@ public class EnemyMove : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             //remove one heart (life) from displayed hearts
-           _HealthController.RemoveHealth();
+           _HealthController.DeductHealth();
 
             //TEMP TO REMOVE
            Destroy(gameObject);
