@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
+    private PlayerData playerData;
+
     private Rigidbody2D body;
     private Animator animator;
-    private HealthController _HealthController;
 
     [SerializeField] private float flySpeed = 4; //constant flying speed
     private float scaleFactor = 0.5f; //used to resize character model | NOT USED
@@ -25,7 +26,7 @@ public class EnemyMove : MonoBehaviour
         body = gameObject.GetComponent<Rigidbody2D>();
         // animator = gameObject.GetComponent<Animator>();
 
-        _HealthController = FindObjectOfType<HealthController>();
+        playerData = FindObjectOfType<PlayerData>();
     }
 
     private void Start()
@@ -50,7 +51,7 @@ public class EnemyMove : MonoBehaviour
         }
 
         //enemy flies until it reaches a boundary or detects/hits the player
-        if(_HealthController.isInjured == false)
+        if(playerData.isInjured == false)
         {
             Fly();
         }
@@ -97,7 +98,7 @@ public class EnemyMove : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             //remove one heart (life) from displayed hearts
-           _HealthController.DeductHealth();
+           playerData.DeductHealth();
 
             //TEMP TO REMOVE
            Destroy(gameObject);

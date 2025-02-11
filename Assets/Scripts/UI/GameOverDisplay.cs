@@ -8,12 +8,6 @@ public class GameOverDisplay : MonoBehaviour
 {
     public TMP_Text _scoreText;
 
-    private void Awake()
-    {
-        //find TMP field (which will contain the score value for display)
-        // _scoreText = GetComponent<TMP_Text>();
-    }
-
     public void ShowGameOver(int score)
     {
         gameObject.SetActive(true);

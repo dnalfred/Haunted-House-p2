@@ -5,17 +5,17 @@ using TMPro;
 
 public class ScoreDisplay : MonoBehaviour
 {
-    private TMP_Text _scoreText;
+    private TMP_Text scoreText;
 
     private void Awake()
     {
         //find TMP field (which will contain the score value for display)
-        _scoreText = GetComponent<TMP_Text>();
+        scoreText = GetComponent<TMP_Text>();
     }
 
     //function to update _scoreText (displayed score)
-    public void updateScore(ScoreController scoreController)
+    public void updateScore(PlayerData playerData)
     {
-        _scoreText.text = $"Score: {scoreController.score}";
+        scoreText.text = $"Score: {playerData.score}";
     }
 }

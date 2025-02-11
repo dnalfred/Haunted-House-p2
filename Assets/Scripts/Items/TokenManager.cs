@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TokenManager : MonoBehaviour
 {
-    private ScoreController _scoreController;
-    private int _tokenScore = 10; //score for each token collected
+    private PlayerData playerData;
+    private int tokenPoints = 10; //score for each token collected
 
     private void Awake()
     {
         //find player object's score controller
-        _scoreController = FindObjectOfType<ScoreController>();
+        playerData = FindObjectOfType<PlayerData>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -19,7 +19,7 @@ public class TokenManager : MonoBehaviour
         if(collider.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            _scoreController.AddScore(_tokenScore);
+            playerData.AddScore(tokenPoints);
         }
     }
 }

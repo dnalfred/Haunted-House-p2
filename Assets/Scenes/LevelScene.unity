@@ -2748,6 +2748,7 @@ GameObject:
   - component: {fileID: 809298410}
   - component: {fileID: 809298411}
   - component: {fileID: 809298412}
+  - component: {fileID: 809298413}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2983,6 +2984,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isInjured: 0
 --- !u!114 &809298412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2995,7 +2997,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582ffa149dd2e4ca0a223d81bd69729c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GameOverDisplay: {fileID: 493014416}
+  playerData: {fileID: 809298413}
+  gameOverDisplay: {fileID: 493014416}
+--- !u!114 &809298413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809298403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cadb3cb27bd545eb88c43edecbdd43b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnScoreChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 365498429}
+        m_TargetAssemblyTypeName: ScoreDisplay, Assembly-CSharp
+        m_MethodName: updateScore
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 809298413}
+          m_ObjectArgumentAssemblyTypeName: PlayerData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 83943228}
+        m_TargetAssemblyTypeName: HealthDisplay, Assembly-CSharp
+        m_MethodName: updateHealth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 809298413}
+          m_ObjectArgumentAssemblyTypeName: PlayerData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isInjured: 0
 --- !u!4 &845266701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8427199286568830758, guid: ad4471c104001406aad3535e695a0830, type: 3}

@@ -24,9 +24,9 @@ public class HealthDisplay : MonoBehaviour
         }
     }
 
-    //function to update displayHealth value
-    public void updateHealth(HealthController healthController)
+    //update displayHealth value
+    public void updateHealth(PlayerData playerData)
     {
-        displayHealth = healthController.health;
+        displayHealth = playerData.health;
     }
 }
