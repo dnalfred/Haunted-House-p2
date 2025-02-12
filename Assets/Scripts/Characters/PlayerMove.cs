@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private PlayerData playerData;
+
     private Rigidbody2D body;
     private Animator animator;
 
     private bool onGround;
     private bool onLadder;
-    private bool isClimbing;
     private bool isGrounded;
+    // private bool isClimbing;
     private bool isFallingOff = false;
 
     [SerializeField] private float walkSpeed = 5; //normal walking speed
@@ -24,10 +25,11 @@ public class PlayerMove : MonoBehaviour
     // Awake is called when the script is loaded
     private void Awake()
     {
-        //Finds components for Player Rigidbody
+        //Find components on the player object
         body = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
 
+        //Find playerData object with game data
         playerData = FindObjectOfType<PlayerData>();
     }
 
@@ -44,20 +46,21 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Triggers falling off screen animation if player is injured
         if(playerData.isInjured && !isFallingOff)
         {
             // isFallingOff = true;
             // FallOffScreen();
         }
 
+        //Store horizontal input
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        //Parameters for animation
-        animator.SetBool("Walking", horizontalInput !=0);
+        //Set parameters for animation
+        animator.SetBool("Walking", horizontalInput != 0);
         animator.SetBool("Grounded", isGrounded);
 
-        //Set the direction of the character model
+        //Set the current lateral direction of the character model
         if(Mathf.Abs(horizontalInput) > 0f)
         {
             SetDirection(horizontalInput);
@@ -66,39 +69,28 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Store horizontal and vertical input
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        //walking
+        //Trigger walking
         if(onGround || onLadder)
         {
             Walk(horizontalInput);
         }
 
-        //jumping
+        //Trigger jumping
         if(Input.GetKey(KeyCode.UpArrow) && onGround && !onLadder)
         {
             Jump();
         }
 
-        //sets isClimbing value
-        if(onLadder && Mathf.Abs(verticalInput) > 0f)
+        //Trigger climbing
+        if(onLadder)
         {
-            isClimbing = true;
+            Climb(verticalInput);
         }
-        else if(onLadder && !onGround) //if the player lands at the top of the ladder (not onGround)
-        {
-            isClimbing = true;
-            isGrounded = true;
-        }
-
-        //climbing
-        if(isClimbing)
-        {
-            body.gravityScale = 0f;
-            body.velocity = new Vector2(body.velocity.x, verticalInput*walkSpeed);
-        }
-        else
+        else if (!onLadder)
         {
             body.gravityScale = gravForce;
         }
@@ -135,6 +127,12 @@ public class PlayerMove : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, jumpForce);
     }
 
+    private void Climb(float input)
+    {
+        body.gravityScale = 0f;
+        body.velocity = new Vector2(body.velocity.x, input*walkSpeed);
+    }
+
     private void FallOffScreen()
     {
         body.velocity = new Vector2(0, jumpForce*2);
@@ -161,7 +159,10 @@ public class PlayerMove : MonoBehaviour
         if(collision.gameObject.tag == "ground")
         {
             onGround = false;
-            isGrounded = false;
+            if(!onLadder)
+            {
+                isGrounded = false;
+            }
         }
     }
 
@@ -181,7 +182,10 @@ public class PlayerMove : MonoBehaviour
         if(collider.gameObject.tag == "ladder")
         {
             onLadder = false;
-            isClimbing = false;
+            if(!onGround)
+            {
+                isGrounded = false;
+            }
         }
     }
 
