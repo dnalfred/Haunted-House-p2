@@ -2745,8 +2745,6 @@ GameObject:
   - component: {fileID: 809298404}
   - component: {fileID: 809298409}
   - component: {fileID: 809298408}
-  - component: {fileID: 809298410}
-  - component: {fileID: 809298411}
   - component: {fileID: 809298412}
   - component: {fileID: 809298413}
   m_Layer: 0
@@ -2930,61 +2928,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &809298410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 809298403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24a589876971849e09cd76a3a5e5d155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnScoreChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 365498429}
-        m_TargetAssemblyTypeName: ScoreDisplay, Assembly-CSharp
-        m_MethodName: updateScore
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 809298410}
-          m_ObjectArgumentAssemblyTypeName: ScoreController, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &809298411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 809298403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7e6ab684a077437ebc31c69e4145378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 83943228}
-        m_TargetAssemblyTypeName: HealthDisplay, Assembly-CSharp
-        m_MethodName: updateHealth
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 809298411}
-          m_ObjectArgumentAssemblyTypeName: HealthController, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  isInjured: 0
 --- !u!114 &809298412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2999,6 +2942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 809298413}
   gameOverDisplay: {fileID: 493014416}
+  isGameOver: 0
 --- !u!114 &809298413
 MonoBehaviour:
   m_ObjectHideFlags: 0
