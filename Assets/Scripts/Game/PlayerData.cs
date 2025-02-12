@@ -15,6 +15,7 @@ public class PlayerData : MonoBehaviour, DataInterface
     
     private int maxHealth = 5;
     public bool isInjured = false;
+    public bool isDead = false;
 
     public void LoadData(GameData data)
     {
@@ -22,6 +23,8 @@ public class PlayerData : MonoBehaviour, DataInterface
         this.health = data.health;
         this.level = data.level;
         Debug.Log("Data loaded");
+        OnScoreChanged.Invoke();
+        OnHealthChanged.Invoke();
     }
 
     public void SaveData(ref GameData data)
@@ -55,5 +58,9 @@ public class PlayerData : MonoBehaviour, DataInterface
         health -= 1;
         OnHealthChanged.Invoke();
         isInjured = true;
+        if(health == 0)
+        {
+            isDead = true;
+        }
     }
 }

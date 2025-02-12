@@ -14,6 +14,12 @@ public class GameOverDisplay : MonoBehaviour
         playerData = FindObjectOfType<PlayerData>();
     }
 
+    private void Start()
+    {
+        //hide game over screen when game starts
+        HideGameOver();
+    }
+
     public void ShowGameOver()
     {
         gameObject.SetActive(true);
@@ -27,6 +33,7 @@ public class GameOverDisplay : MonoBehaviour
 
     public void RestartButton()
     {
+        DataManager.instance.ResetGame();
         SceneManager.LoadScene("LevelScene");
     }
 

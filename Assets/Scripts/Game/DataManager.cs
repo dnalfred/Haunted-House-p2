@@ -7,6 +7,7 @@ public class DataManager : MonoBehaviour
 {
     private GameData gameData;
     private List<DataInterface> dataObjects;
+    private SaveSystemJson saveSystem;
     public static DataManager instance { get; private set; }
 
     private void Awake()
@@ -20,6 +21,7 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
+        this.saveSystem = new SaveSystemJson();
         this.dataObjects = FinAllDataObjects();
         LoadGame();
     }
@@ -32,13 +34,15 @@ public class DataManager : MonoBehaviour
 
     public void LoadGame()
     {
-        //load the data
+        //Load saved game data, if available
+        this.gameData = saveSystem.LoadPlayerData();
         if (this.gameData == null)
         {
-            Debug.Log("Existing data not found");
+            Debug.Log("Existing saved data not found");
             NewGame();
         }
-        //Pass data to scripts
+
+        //Pass loaded data to other scripts
         foreach(DataInterface dataObject in dataObjects)
         {
             dataObject.LoadData(gameData);
@@ -52,13 +56,20 @@ public class DataManager : MonoBehaviour
         {
             dataObject.SaveData(ref gameData);
         }
-        //save data
+
+        //Save game data to file
+        saveSystem.SavePlayerData(gameData);
+    }
+
+    public void ResetGame()
+    {
+        NewGame();
+        saveSystem.SavePlayerData(gameData);
     }
 
     private void OnApplicationQuit()
     {
-        NewGame();
-        SaveGame();
+        ResetGame();
     }
 
     private List<DataInterface> FinAllDataObjects()

@@ -8,11 +8,12 @@ public class GameController : MonoBehaviour
     public GameOverDisplay gameOverDisplay;
 
     public bool isGameOver = false;
+    private bool isFallingOff = false;
 
     private void Awake()
     {
-        //hide game over screen when game starts
-        gameOverDisplay.HideGameOver();
+        // //hide game over screen when game starts
+        // gameOverDisplay.HideGameOver();
 
         //find playerData object
         playerData = FindObjectOfType<PlayerData>();
@@ -20,6 +21,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        //Triggers game over
         if(playerData.health == 0)
         {
             GameOver();

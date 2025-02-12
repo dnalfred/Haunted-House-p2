@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     private bool isGrounded;
     // private bool isClimbing;
     private bool isFallingOff = false;
+    private bool toReset = true;
 
     [SerializeField] private float walkSpeed = 5; //normal walking speed
     [SerializeField] private float jumpForce = 4; //normal jumping strength
@@ -49,8 +51,12 @@ public class PlayerMove : MonoBehaviour
         //Triggers falling off screen animation if player is injured
         if(playerData.isInjured && !isFallingOff)
         {
-            // isFallingOff = true;
-            // FallOffScreen();
+            isFallingOff = true;
+            if(playerData.isDead)
+            {
+                toReset = false;
+            }
+            FallOffScreen();
         }
 
         //Store horizontal input
@@ -135,6 +141,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FallOffScreen()
     {
+        DataManager.instance.SaveGame();
         body.velocity = new Vector2(0, jumpForce*2);
         body.GetComponent<Collider2D>().enabled = false;
     }
@@ -191,12 +198,16 @@ public class PlayerMove : MonoBehaviour
 
     #endregion
 
-    #region WHEN NOT VISIBLE
+    #region WHEN OFF SCREEN
 
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
         Debug.Log("Player object destroyed at y = " + transform.position.y);
+        if(toReset)
+        {
+            SceneManager.LoadScene("LevelScene");
+        }
     }
 
     #endregion
