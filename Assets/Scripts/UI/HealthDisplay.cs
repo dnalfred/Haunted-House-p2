@@ -27,6 +27,6 @@ public class HealthDisplay : MonoBehaviour
     //update displayHealth value
     public void updateHealth(PlayerData playerData)
     {
-        displayHealth = playerData.health;
+        displayHealth = playerData.gameData.health;
     }
 }

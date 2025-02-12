@@ -47,8 +47,8 @@ public class PlayerMove : MonoBehaviour
 
         if(playerData.isInjured && !isFallingOff)
         {
-            isFallingOff = true;
-            FallOffScreen();
+            // isFallingOff = true;
+            // FallOffScreen();
         }
 
         float horizontalInput = Input.GetAxis("Horizontal");

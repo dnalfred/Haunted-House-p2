@@ -6,12 +6,18 @@ using TMPro;
 
 public class GameOverDisplay : MonoBehaviour
 {
-    public TMP_Text _scoreText;
+    private PlayerData playerData;
+    public TMP_Text scoreText;
 
-    public void ShowGameOver(int score)
+    private void Awake()
+    {
+        playerData = FindObjectOfType<PlayerData>();
+    }
+
+    public void ShowGameOver()
     {
         gameObject.SetActive(true);
-        _scoreText.text = $"Score: {score}";
+        scoreText.text = $"Score: {playerData.gameData.score}";
     }
 
     public void HideGameOver()

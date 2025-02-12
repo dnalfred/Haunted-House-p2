@@ -14,12 +14,13 @@ public class GameController : MonoBehaviour
         //hide game over screen when game starts
         gameOverDisplay.HideGameOver();
 
+        //find playerData object
         playerData = FindObjectOfType<PlayerData>();
     }
 
     private void Update()
     {
-        if(playerData.health == 0)
+        if(playerData.gameData.health == 0)
         {
             GameOver();
         }
@@ -28,6 +29,6 @@ public class GameController : MonoBehaviour
     private void GameOver()
     {
         isGameOver = true;
-        gameOverDisplay.ShowGameOver(playerData.score);
+        gameOverDisplay.ShowGameOver();
     }
 }
