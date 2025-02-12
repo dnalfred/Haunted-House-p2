@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    private PlayerData playerData;
     private Rigidbody2D body;
     private Animator animator;
+
     private bool onGround;
     private bool onLadder;
     private bool isClimbing;
     private bool isGrounded;
+    private bool isFallingOff = false;
 
     [SerializeField] private float walkSpeed = 5; //normal walking speed
     [SerializeField] private float jumpForce = 4; //normal jumping strength
     private float gravForce = 2f; //adjusted gravity
     private float scaleFactor = 0.5f; //used to resize character model
+
+    #region AWAKE, START & UPDATES
 
     // Awake is called when the script is loaded
     private void Awake()
@@ -22,6 +27,8 @@ public class PlayerMove : MonoBehaviour
         //Finds components for Player Rigidbody
         body = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
+
+        playerData = FindObjectOfType<PlayerData>();
     }
 
     // Start is called before the first frame update
@@ -37,6 +44,13 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(playerData.isInjured && !isFallingOff)
+        {
+            isFallingOff = true;
+            FallOffScreen();
+        }
+
         float horizontalInput = Input.GetAxis("Horizontal");
 
         //Parameters for animation
@@ -90,6 +104,10 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region SET PLAYER DIRECTION
+
     //function to set the direction the player's character model is facing
     private void SetDirection(float input)
     {
@@ -103,6 +121,10 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region MOVEMENT
+
     private void Walk(float input)
     {
         body.velocity = new Vector2(input*walkSpeed, body.velocity.y);
@@ -112,6 +134,16 @@ public class PlayerMove : MonoBehaviour
     {
         body.velocity = new Vector2(body.velocity.x, jumpForce);
     }
+
+    private void FallOffScreen()
+    {
+        body.velocity = new Vector2(0, jumpForce*2);
+        body.GetComponent<Collider2D>().enabled = false;
+    }
+
+    #endregion
+
+    #region COLLISION DETECTION
 
     //function to detect collisions with ground objects
     private void OnCollisionEnter2D(Collision2D collision)
@@ -152,4 +184,16 @@ public class PlayerMove : MonoBehaviour
             isClimbing = false;
         }
     }
+
+    #endregion
+
+    #region WHEN NOT VISIBLE
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+        Debug.Log("Player object destroyed at y = " + transform.position.y);
+    }
+
+    #endregion
 }

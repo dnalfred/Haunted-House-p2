@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour
     public PlayerData playerData;
     public GameOverDisplay gameOverDisplay;
 
+    public bool isGameOver = false;
+
     private void Awake()
     {
         //hide game over screen when game starts
@@ -25,6 +27,7 @@ public class GameController : MonoBehaviour
 
     private void GameOver()
     {
+        isGameOver = true;
         gameOverDisplay.ShowGameOver(playerData.score);
     }
 }
