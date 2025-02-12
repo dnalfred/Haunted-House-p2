@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerData : MonoBehaviour
+public class PlayerData : MonoBehaviour, DataInterface
 {
-    public GameData gameData { get; private set; }
+    // public GameData gameData { get; private set; }
+    public int score;
+    public int health;
+    public int level;
     
     public UnityEvent OnScoreChanged;
     public UnityEvent OnHealthChanged;
@@ -13,29 +16,35 @@ public class PlayerData : MonoBehaviour
     private int maxHealth = 5;
     public bool isInjured = false;
 
-    public void Start()
+    public void LoadData(GameData data)
     {
-        NewGame();
+        this.score = data.score;
+        this.health = data.health;
+        this.level = data.level;
+        Debug.Log("Data loaded");
     }
 
-    public void NewGame()
+    public void SaveData(ref GameData data)
     {
-        this.gameData = new GameData();
+        data.score = this.score;
+        data.health = this.health;
+        data.level = this.level;
+        Debug.Log("Data saved");
     }
 
     //add an amount to score
     public void AddScore(int amount)
     {
-        gameData.score += amount;
+        score += amount;
         OnScoreChanged.Invoke();
     }
 
     //add 1 to health (up to maxHealth)
     public void AddHealth() 
     {    
-        if(gameData.health < maxHealth) 
+        if(health < maxHealth) 
         {
-            gameData.health += 1;
+            health += 1;
             OnHealthChanged.Invoke();
         }
     }
@@ -43,7 +52,7 @@ public class PlayerData : MonoBehaviour
     //deduct 1 from health
     public void DeductHealth() 
     {
-        gameData.health -= 1;
+        health -= 1;
         OnHealthChanged.Invoke();
         isInjured = true;
     }

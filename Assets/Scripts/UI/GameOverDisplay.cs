@@ -17,7 +17,7 @@ public class GameOverDisplay : MonoBehaviour
     public void ShowGameOver()
     {
         gameObject.SetActive(true);
-        scoreText.text = $"Score: {playerData.gameData.score}";
+        scoreText.text = $"Score: {playerData.score}";
     }
 
     public void HideGameOver()

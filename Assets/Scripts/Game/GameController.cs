@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if(playerData.gameData.health == 0)
+        if(playerData.health == 0)
         {
             GameOver();
         }

@@ -16,6 +16,6 @@ public class ScoreDisplay : MonoBehaviour
     //function to update _scoreText (displayed score)
     public void updateScore(PlayerData playerData)
     {
-        scoreText.text = $"Score: {playerData.gameData.score}";
+        scoreText.text = $"Score: {playerData.score}";
     }
 }
