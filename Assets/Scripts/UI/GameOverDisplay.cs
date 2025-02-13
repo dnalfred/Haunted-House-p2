@@ -16,29 +16,46 @@ public class GameOverDisplay : MonoBehaviour
 
     private void Start()
     {
-        //hide game over screen when game starts
+        //Hide game over screen when game starts
         HideGameOver();
     }
 
-    public void ShowGameOver()
+    private void Update()
     {
-        gameObject.SetActive(true);
-        scoreText.text = $"Score: {playerData.score}";
+        // //Show game over screen if player health = 0
+        // if(playerData.health == 0)
+        // {
+        //     ShowGameOver();
+        // }
     }
 
+    #region HIDE/SHOW GAME OVER
+    //To hide game over screen
     public void HideGameOver()
     {
         gameObject.SetActive(false);
     }
 
+    //To show game over screen  
+    public void ShowGameOver()
+    {
+        gameObject.SetActive(true);
+        scoreText.text = $"Score: {playerData.score}";
+    }
+    #endregion
+
+    #region BUTTONS
+    //Restart button funtionality
     public void RestartButton()
     {
         DataManager.instance.ResetGame();
         SceneManager.LoadScene("LevelScene");
     }
 
+    //Menu button funtionality
     public void MenuButton()
     {
-
+        //not yet implemented
     }
+    #endregion
 }
