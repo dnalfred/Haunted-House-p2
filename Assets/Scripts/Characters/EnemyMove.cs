@@ -10,7 +10,7 @@ public class EnemyMove : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private float flySpeed = 4; //constant flying speed
-    private float scaleFactor = 0.5f; //used to resize character model | NOT USED
+    private float scaleFactor = 1.2f; //used to resize character model | NOT USED
     private float direction = 1;
     private bool isTurning = false;
 
@@ -59,6 +59,8 @@ public class EnemyMove : MonoBehaviour
         {
             Freeze();
         }
+
+        SetDirection();
     }
 
     IEnumerator ChangeDirection()
@@ -68,6 +70,18 @@ public class EnemyMove : MonoBehaviour
         direction = direction*-1; //flips direction of movement
         yield return new WaitForSeconds(0.5f);
         isTurning = false; //reset isTurning
+    }
+
+    private void SetDirection()
+    {
+        if(direction > 0.0f)
+        {
+            transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-scaleFactor, scaleFactor, scaleFactor);
+        }
     }
 
     private void Fly()
@@ -99,9 +113,6 @@ public class EnemyMove : MonoBehaviour
         {
             //remove one heart (life) from displayed hearts
            playerData.DeductHealth();
-
-            //TEMP TO REMOVE
-           Destroy(gameObject);
         }
     }
 }
