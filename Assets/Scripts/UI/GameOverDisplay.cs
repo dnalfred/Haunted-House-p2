@@ -6,11 +6,12 @@ using TMPro;
 
 public class GameOverDisplay : MonoBehaviour
 {
-    private PlayerData playerData;
+    public PlayerData playerData;
     public TMP_Text scoreText;
 
     private void Awake()
     {
+        //Find playerData object
         playerData = FindObjectOfType<PlayerData>();
     }
 
@@ -22,11 +23,11 @@ public class GameOverDisplay : MonoBehaviour
 
     private void Update()
     {
-        // //Show game over screen if player health = 0
-        // if(playerData.health == 0)
-        // {
-        //     ShowGameOver();
-        // }
+        //Show game over screen if player health = 0
+        if(playerData.health == 0)
+        {
+            // ShowGameOver();
+        }
     }
 
     #region HIDE/SHOW GAME OVER
@@ -45,20 +46,20 @@ public class GameOverDisplay : MonoBehaviour
     #endregion
 
     #region BUTTONS
-    //Restart button funtionality
+    //For UI Restart button
     public void RestartButton()
     {
         DataManager.instance.ResetGame();
         SceneManager.LoadScene("LevelScene");
     }
 
-    //Menu button funtionality
+    //For UI Menu button
     public void MenuButton()
     {
         //not yet implemented
     }
 
-    //Exit button funtionality
+    //For UI Exit button
     public void QuitButton()
     {
         Application.Quit();
