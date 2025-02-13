@@ -8,13 +8,9 @@ public class GameController : MonoBehaviour
     public GameOverDisplay gameOverDisplay;
 
     public bool isGameOver = false;
-    private bool isFallingOff = false;
 
     private void Awake()
     {
-        // //hide game over screen when game starts
-        // gameOverDisplay.HideGameOver();
-
         //find playerData object
         playerData = FindObjectOfType<PlayerData>();
     }

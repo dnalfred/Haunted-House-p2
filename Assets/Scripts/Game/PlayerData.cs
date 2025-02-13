@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class PlayerData : MonoBehaviour, DataInterface
 {
-    // public GameData gameData { get; private set; }
     public int score;
     public int health;
     public int level;
