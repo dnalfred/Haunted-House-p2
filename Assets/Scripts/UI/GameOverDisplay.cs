@@ -57,5 +57,11 @@ public class GameOverDisplay : MonoBehaviour
     {
         //not yet implemented
     }
+
+    //Exit button funtionality
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
     #endregion
 }
