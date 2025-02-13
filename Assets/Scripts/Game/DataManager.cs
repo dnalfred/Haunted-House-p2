@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
     private List<DataInterface> dataObjects;
     private SaveSystemJson saveSystem;
     public static DataManager instance { get; private set; }
+    [SerializeField] private bool useEncryption;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        this.saveSystem = new SaveSystemJson();
+        this.saveSystem = new SaveSystemJson(useEncryption);
         this.dataObjects = FinAllDataObjects();
         LoadGame();
     }

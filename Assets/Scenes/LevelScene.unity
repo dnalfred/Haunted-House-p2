@@ -1890,6 +1890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05c4a4e5bfbe43ec8fdd5f88f90f25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 0}
   scoreText: {fileID: 1413847172}
 --- !u!1 &519420028
 GameObject:
@@ -5318,6 +5319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ee9b248031347d7a829f4ebb49a7f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useEncryption: 1
 --- !u!4 &1760944690
 Transform:
   m_ObjectHideFlags: 0
