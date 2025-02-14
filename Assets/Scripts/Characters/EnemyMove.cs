@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     private PlayerData playerData;
+    private GameController gameController;
 
     private Rigidbody2D body;
     private Animator animator;
@@ -22,7 +23,7 @@ public class EnemyMove : MonoBehaviour
 
     private void Awake()
     {
-        //finds components for enemy Rigidbody
+        //Finds components for enemy Rigidbody
         body = gameObject.GetComponent<Rigidbody2D>();
         // animator = gameObject.GetComponent<Animator>();
 
@@ -31,10 +32,10 @@ public class EnemyMove : MonoBehaviour
 
     private void Start()
     {
-        //stop character model from rotating
+        //Stop character model from rotating
         body.freezeRotation = true;
 
-        //set character gravity scale to 0 while flying
+        //Set character gravity scale to 0 while flying
         body.gravityScale = 0;
 
         pauseTime = Random.Range(minPauseTime, maxPauseTime);
@@ -44,20 +45,20 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
-        //checks if the enemy has reached a specified boundary position
+        //Checks if the enemy has reached a specified boundary position
         if(!isTurning && (transform.position.x > rightBoundary || transform.position.x < leftBoundary))
         {
             StartCoroutine(ChangeDirection());
         }
 
-        //enemy flies until it reaches a boundary or detects/hits the player
-        if(playerData.isInjured == false)
+        //After game starts, enemy flies until it reaches a boundary or detects/hits the player
+        if(playerData.isLevelStart == 1 || playerData.isInjured)
         {
-            Fly();
+            Freeze();
         }
         else
         {
-            Freeze();
+            Fly();
         }
 
         SetDirection();

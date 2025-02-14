@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     public PlayerData playerData;
     public GameOverDisplay gameOverDisplay;
+    public TimerDisplay timerDisplay;
 
     private void Awake()
     {
@@ -15,6 +16,12 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        //Triggers displays of Timer screen at level start
+        if(playerData.isLevelStart == 1)
+        {
+            timerDisplay.ShowTimer();
+        }
+
         //Triggers game over
         if(playerData.health == 0)
         {

@@ -62,14 +62,18 @@ public class PlayerMove : MonoBehaviour
         //Store horizontal input
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        //Set parameters for animation
-        animator.SetBool("Walking", horizontalInput != 0);
-        animator.SetBool("Grounded", isGrounded);
-
-        //Set the current lateral direction of the character model
-        if(Mathf.Abs(horizontalInput) > 0f)
+        //After level starts
+        if(playerData.isLevelStart == 0)
         {
-            SetDirection(horizontalInput);
+            //Set parameters for animation
+            animator.SetBool("Walking", horizontalInput != 0);
+            animator.SetBool("Grounded", isGrounded);
+
+            //Set the current lateral direction of the character model
+            if(Mathf.Abs(horizontalInput) > 0f)
+            {
+                SetDirection(horizontalInput);
+            }
         }
     }
 
@@ -79,26 +83,30 @@ public class PlayerMove : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        //Trigger walking
-        if(onGround || onLadder)
+        //After level starts
+        if(playerData.isLevelStart == 0)
         {
-            Walk(horizontalInput);
-        }
+            //Trigger walking
+            if(onGround || onLadder)
+            {
+                Walk(horizontalInput);
+            }
 
-        //Trigger jumping
-        if(Input.GetKey(KeyCode.UpArrow) && onGround && !onLadder)
-        {
-            Jump();
-        }
+            //Trigger jumping
+            if(Input.GetKey(KeyCode.UpArrow) && onGround && !onLadder)
+            {
+                Jump();
+            }
 
-        //Trigger climbing
-        if(onLadder)
-        {
-            Climb(verticalInput);
-        }
-        else if (!onLadder)
-        {
-            body.gravityScale = gravForce;
+            //Trigger climbing
+            if(onLadder)
+            {
+                Climb(verticalInput);
+            }
+            else if (!onLadder)
+            {
+                body.gravityScale = gravForce;
+            }
         }
     }
 
