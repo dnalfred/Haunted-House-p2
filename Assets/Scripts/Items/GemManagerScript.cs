@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ItemManager : MonoBehaviour, DataInterface
+public class GemManagerScript : MonoBehaviour, DataInterface
 {
     private PlayerData playerData;
     
