@@ -7,7 +7,7 @@ public class KeyManager : MonoBehaviour, DataInterface
 {
 private PlayerData playerData;
     
-    private int keyPoints = 100; //points for each key collected
+    private int itemPoints = 100; //points for each key collected
     [SerializeField] private string id;
     private bool isCollected = false;
     public UnityEvent OnKeyCollected;
@@ -48,7 +48,7 @@ private PlayerData playerData;
         if(collider.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            playerData.AddScore(keyPoints);
+            playerData.AddScore(itemPoints);
             isCollected = true;
             OnKeyCollected.Invoke();
         }

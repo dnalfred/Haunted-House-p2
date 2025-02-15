@@ -110,7 +110,7 @@ public class EnemyMove : MonoBehaviour
     {
         float currentSpeed = flySpeed;
         flySpeed = flySpeed/2;
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(8);
         flySpeed = currentSpeed;
     }
 

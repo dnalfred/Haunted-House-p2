@@ -5,7 +5,7 @@ using UnityEngine;
 public class TokenManager : MonoBehaviour, DataInterface
 {
     private PlayerData playerData;
-    private int tokenPoints = 10; //points for each token collected
+    private int itemPoints = 10; //points for each token collected
     private bool isCollected = false;
 
     private void Awake()
@@ -45,7 +45,7 @@ public class TokenManager : MonoBehaviour, DataInterface
         if(collider.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            playerData.AddScore(tokenPoints);
+            playerData.AddScore(itemPoints);
             isCollected = true;
         }
     }

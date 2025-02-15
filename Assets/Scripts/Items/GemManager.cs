@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GemManagerScript : MonoBehaviour, DataInterface
+public class GemManager : MonoBehaviour, DataInterface
 {
     private PlayerData playerData;
     
     private int itemPoints = 100; //points for each item collected
     [SerializeField] private string id;
     private bool isCollected = false;
-    public UnityEvent OnCollected;
+    public UnityEvent OnGemCollected;
 
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class GemManagerScript : MonoBehaviour, DataInterface
             Destroy(gameObject);
             playerData.AddScore(itemPoints);
             isCollected = true;
-            OnCollected.Invoke();
+            OnGemCollected.Invoke();
         }
     }
 }
