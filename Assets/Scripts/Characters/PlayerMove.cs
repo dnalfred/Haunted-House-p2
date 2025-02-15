@@ -17,8 +17,8 @@ public class PlayerMove : MonoBehaviour
     private bool isFallingOff = false;
     private bool toReset = true;
 
-    [SerializeField] private float walkSpeed = 5; //normal walking speed
-    [SerializeField] private float jumpForce = 4; //normal jumping strength
+    [SerializeField] private float walkSpeed = 5; //regular walking speed
+    [SerializeField] private float jumpForce = 4; //regular jumping strength
     private float gravForce = 2f; //adjusted gravity
     private float scaleFactor = 0.5f; //used to resize character model
 

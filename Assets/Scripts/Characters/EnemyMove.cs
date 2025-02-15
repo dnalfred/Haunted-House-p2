@@ -11,7 +11,7 @@ public class EnemyMove : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private float direction = 1;
-    [SerializeField] private float flySpeed = 4; //constant flying speed
+    private float flySpeed = 4; //regular flying speed
     private float scaleFactor = 1.2f; //used to resize character model
     private bool isTurning = false;
 
@@ -38,9 +38,8 @@ public class EnemyMove : MonoBehaviour
         //Set character gravity scale to 0 while flying
         body.gravityScale = 0;
 
+        //Set pause time for each enemy to turn
         pauseTime = Random.Range(minPauseTime, maxPauseTime);
-        // pauseTime = Mathf.Ceil(Random.Range(minPauseTime, maxPauseTime));
-        // Debug.Log(pauseTime);
     }
 
     private void Update()
@@ -61,9 +60,11 @@ public class EnemyMove : MonoBehaviour
             Fly();
         }
 
+        //Sets the direction the character sprite is facing
         SetDirection();
     }
 
+    //Function to change the direction of movement
     IEnumerator ChangeDirection()
     {
         isTurning = true;
@@ -73,6 +74,7 @@ public class EnemyMove : MonoBehaviour
         isTurning = false; //reset isTurning
     }
 
+    //Function to set the direction of the character sprite
     private void SetDirection()
     {
         if(direction > 0.0f)
@@ -85,21 +87,25 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
+    //Function to move the enemy
     private void Fly()
     {
         body.velocity = new Vector2(flySpeed*direction, body.velocity.y);
     }
 
+    //Function to stop the enemy from moving
     private void Freeze()
     {
         body.velocity = new Vector2(0, 0);
     }
 
+    //Slows does an enemy when triggered
     public void SlowedFlying()
     {
         StartCoroutine(Slowed());
     }
 
+    //Function to slow does an enemy
     IEnumerator Slowed()
     {
         float currentSpeed = flySpeed;
@@ -108,6 +114,7 @@ public class EnemyMove : MonoBehaviour
         flySpeed = currentSpeed;
     }
 
+    //TO CHECK
     private void HuntPlayer()
     {
         //this works
@@ -125,8 +132,8 @@ public class EnemyMove : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            //remove one heart (life) from displayed hearts
-           playerData.DeductHealth();
+            //Remove one health point from the player
+            playerData.DeductHealth();
         }
     }
 }

@@ -7,8 +7,6 @@ public class TokenManager : MonoBehaviour, DataInterface
     private PlayerData playerData;
     private int tokenPoints = 10; //points for each token collected
     private bool isCollected = false;
-    [SerializeField] private string id;
-    [ContextMenu("Generate guid for id")]
 
     private void Awake()
     {
@@ -16,6 +14,8 @@ public class TokenManager : MonoBehaviour, DataInterface
         playerData = FindObjectOfType<PlayerData>();
     }
 
+    [SerializeField] private string id;
+    [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
     {
         id = System.Guid.NewGuid().ToString();
