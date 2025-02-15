@@ -12,6 +12,7 @@ public class PlayerData : MonoBehaviour, DataInterface
     
     public UnityEvent OnScoreChanged;
     public UnityEvent OnHealthChanged;
+    public UnityEvent OnLevelChanged;
     
     private int maxHealth = 5;
     public bool isInjured = false;
@@ -25,6 +26,7 @@ public class PlayerData : MonoBehaviour, DataInterface
         this.isLevelStart = data.isLevelStart;
         OnScoreChanged.Invoke();
         OnHealthChanged.Invoke();
+        OnLevelChanged.Invoke();
     }
 
     public void SaveData(ref GameData data)
@@ -55,6 +57,13 @@ public class PlayerData : MonoBehaviour, DataInterface
             health += 1;
             OnHealthChanged.Invoke();
         }
+    }
+
+    //add 1 to level
+    public void AddLevel()
+    {
+        level += 1;
+        OnScoreChanged.Invoke();
     }
 
     //deduct 1 from health
