@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemManager : MonoBehaviour, DataInterface
 {
     private PlayerData playerData;
+    
     private int itemPoints = 100; //points for each item collected
-    private bool isCollected = false;
     [SerializeField] private string id;
-    [ContextMenu("Generate guid for id")]
+    private bool isCollected = false;
+    public UnityEvent OnCollected;
 
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class ItemManager : MonoBehaviour, DataInterface
         playerData = FindObjectOfType<PlayerData>();
     }
 
+    [ContextMenu("Generate guid for id")]
     private void GenerateGuid()
     {
         id = System.Guid.NewGuid().ToString();
@@ -47,6 +50,7 @@ public class ItemManager : MonoBehaviour, DataInterface
             Destroy(gameObject);
             playerData.AddScore(itemPoints);
             isCollected = true;
+            OnCollected.Invoke();
         }
     }
 }

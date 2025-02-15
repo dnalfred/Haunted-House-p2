@@ -10,9 +10,9 @@ public class EnemyMove : MonoBehaviour
     private Rigidbody2D body;
     private Animator animator;
 
+    [SerializeField] private float direction = 1;
     [SerializeField] private float flySpeed = 4; //constant flying speed
-    private float scaleFactor = 1.2f; //used to resize character model | NOT USED
-    private float direction = 1;
+    private float scaleFactor = 1.2f; //used to resize character model
     private bool isTurning = false;
 
     [SerializeField] private float leftBoundary = 8;
@@ -93,6 +93,19 @@ public class EnemyMove : MonoBehaviour
     private void Freeze()
     {
         body.velocity = new Vector2(0, 0);
+    }
+
+    public void SlowedFlying()
+    {
+        StartCoroutine(Slowed());
+    }
+
+    IEnumerator Slowed()
+    {
+        float currentSpeed = flySpeed;
+        flySpeed = flySpeed/2;
+        yield return new WaitForSeconds(10);
+        flySpeed = currentSpeed;
     }
 
     private void HuntPlayer()
