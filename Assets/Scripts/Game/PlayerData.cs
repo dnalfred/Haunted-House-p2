@@ -9,10 +9,12 @@ public class PlayerData : MonoBehaviour, DataInterface
     public int health;
     public int level;
     public int isLevelStart;
+    public int isKeyCollected;
     
     public UnityEvent OnScoreChanged;
     public UnityEvent OnHealthChanged;
     public UnityEvent OnLevelChanged;
+    public UnityEvent OnKeyCollected;
     
     private int maxHealth = 5;
     public bool isInjured = false;
@@ -24,9 +26,11 @@ public class PlayerData : MonoBehaviour, DataInterface
         this.health = data.health;
         this.level = data.level;
         this.isLevelStart = data.isLevelStart;
+        this.isKeyCollected = data.isKeyCollected;
         OnScoreChanged.Invoke();
         OnHealthChanged.Invoke();
         OnLevelChanged.Invoke();
+        OnKeyCollected.Invoke();
     }
 
     public void SaveData(ref GameData data)
@@ -35,6 +39,7 @@ public class PlayerData : MonoBehaviour, DataInterface
         data.health = this.health;
         data.level = this.level;
         data.isLevelStart = this.isLevelStart;
+        data.isKeyCollected = this.isKeyCollected;
     }
 
     public void LevelStarted()
@@ -42,14 +47,14 @@ public class PlayerData : MonoBehaviour, DataInterface
         isLevelStart = 0;
     }
     
-    //add an amount to score
+    //Add an amount to score
     public void AddScore(int amount)
     {
         score += amount;
         OnScoreChanged.Invoke();
     }
 
-    //add 1 to health (up to maxHealth)
+    //Add 1 to health (up to maxHealth)
     public void AddHealth() 
     {    
         if(health < maxHealth) 
@@ -59,14 +64,7 @@ public class PlayerData : MonoBehaviour, DataInterface
         }
     }
 
-    //add 1 to level
-    public void AddLevel()
-    {
-        level += 1;
-        OnScoreChanged.Invoke();
-    }
-
-    //deduct 1 from health
+    //Deduct 1 from health
     public void DeductHealth() 
     {
         health -= 1;
@@ -76,5 +74,18 @@ public class PlayerData : MonoBehaviour, DataInterface
         {
             isDead = true;
         }
+    }
+
+    //Add 1 to level
+    public void AddLevel()
+    {
+        level += 1;
+        OnScoreChanged.Invoke();
+    }
+    
+    public void KeyCollected()
+    {
+        isKeyCollected = 1;
+        OnKeyCollected.Invoke();
     }
 }

@@ -9,6 +9,7 @@ public class GameData
     public int health;
     public int level;
     public int isLevelStart;
+    public int isKeyCollected;
     public SerializableDictionary<string, bool> tokensCollected;
     public SerializableDictionary<string, bool> itemsCollected;
 
@@ -19,6 +20,7 @@ public class GameData
         this.health = 3;
         this.level = 1;
         this.isLevelStart = 1;
+        this.isKeyCollected = 0;
         tokensCollected = new SerializableDictionary<string, bool>();
         itemsCollected = new SerializableDictionary<string, bool>();
     }
