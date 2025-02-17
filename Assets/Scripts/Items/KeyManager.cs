@@ -50,6 +50,7 @@ private PlayerData playerData;
             Destroy(gameObject);
             playerData.AddScore(itemPoints);
             isCollected = true;
+            playerData.KeyCollected();
             OnKeyCollected.Invoke();
         }
     }

@@ -1550,6 +1550,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1359520852}
     m_Modifications:
+    - target: {fileID: 1849875470671311381, guid: 34912059ef0fb48f583239de7842be6b, type: 3}
+      propertyPath: isFakeDoor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8503361637216224368, guid: 34912059ef0fb48f583239de7842be6b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.21621023
@@ -1596,7 +1600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8528269670227359783, guid: 34912059ef0fb48f583239de7842be6b, type: 3}
       propertyPath: m_Name
-      value: Door (1)
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 8874522745379012239, guid: 34912059ef0fb48f583239de7842be6b, type: 3}
       propertyPath: m_Size.x
@@ -4989,8 +4993,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4209675727283232597}
   - {fileID: 266644598}
+  - {fileID: 4209675727283232597}
   - {fileID: 5887511}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7530,7 +7534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8528269670227359783, guid: 34912059ef0fb48f583239de7842be6b, type: 3}
       propertyPath: m_Name
-      value: Door
+      value: Door (Exit)
       objectReference: {fileID: 0}
     - target: {fileID: 8874522745379012239, guid: 34912059ef0fb48f583239de7842be6b, type: 3}
       propertyPath: m_Size.x
