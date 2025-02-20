@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 8528269670227359783}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.822, y: -3.1098, z: -0.2}
-  m_LocalScale: {x: 0.3362, y: 0.7787, z: 1}
+  m_LocalPosition: {x: -8.7622, y: -3.1098, z: -0.2}
+  m_LocalScale: {x: 0.21654642, y: 0.7787, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -129,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7340194, y: 1}
+  m_Size: {x: 2.1714406, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1849875470671311381
 MonoBehaviour:
@@ -143,3 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0969ead51ca44f790dd41fafd246f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFakeDoor: 0
+  isLevelTrigger: 0

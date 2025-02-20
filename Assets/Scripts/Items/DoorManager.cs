@@ -6,6 +6,7 @@ public class DoorManager : MonoBehaviour
 {
     PlayerData playerData;
     [SerializeField] private bool isFakeDoor;
+    [SerializeField] private bool isLevelTrigger;
 
     private void Awake()
     {
@@ -21,11 +22,21 @@ public class DoorManager : MonoBehaviour
         }
     }
 
+    private void NextLevel()
+    {
+        Debug.Log("Next level");
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player" && !isFakeDoor)
+        if(collision.gameObject.tag == "Player" && !isFakeDoor && !isLevelTrigger)
         {
             OpenDoor();
+        }
+
+        if(collision.gameObject.tag == "Player" && isLevelTrigger)
+        {
+            NextLevel();
         }
     }
 }
