@@ -13,6 +13,12 @@ public class MainMeneDisplay : MonoBehaviour
         SceneManager.LoadScene ("LevelScene", LoadSceneMode.Single);
     }
 
+    //For Menu Information button
+    public void InfoButton()
+    {
+        Debug.Log("Info button clicked!"); //delete
+    }
+
     //For Menu High Scores button
     public void ScoresButton()
     {
