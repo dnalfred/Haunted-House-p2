@@ -9,6 +9,7 @@ public class MainMeneDisplay : MonoBehaviour
     //For Menu Play button
     public void PlayButton()
     {
+        Debug.Log("Play button clicked!"); //delete
         SceneManager.LoadScene ("LevelScene", LoadSceneMode.Single);
     }
 

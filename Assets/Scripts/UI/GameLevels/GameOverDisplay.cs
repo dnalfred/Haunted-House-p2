@@ -49,6 +49,7 @@ public class GameOverDisplay : MonoBehaviour
     //For UI Restart button
     public void RestartButton()
     {
+        Debug.Log("Restart button clicked"); //delete
         DataManager.instance.ResetGame();
         SceneManager.LoadScene("LevelScene");
     }
@@ -56,12 +57,16 @@ public class GameOverDisplay : MonoBehaviour
     //For UI Menu button
     public void MenuButton()
     {
-        //not yet implemented
+        Debug.Log("Menu button clicked"); //delete
+        DataManager.instance.ResetGame();
+        SceneManager.LoadScene("MainMenu");
     }
 
     //For UI Exit button
     public void QuitButton()
     {
+        Debug.Log("Quit button clicked"); //delete
+        DataManager.instance.ResetGame();
         Application.Quit();
     }
     #endregion
