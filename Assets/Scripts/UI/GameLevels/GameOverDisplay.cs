@@ -30,7 +30,6 @@ public class GameOverDisplay : MonoBehaviour
         }
     }
 
-    #region HIDE/SHOW GAME OVER
     //To hide game over screen
     public void HideGameOver()
     {
@@ -43,31 +42,12 @@ public class GameOverDisplay : MonoBehaviour
         gameObject.SetActive(true);
         scoreText.text = $"Score: {playerData.score}";
     }
-    #endregion
-
-    #region BUTTONS
-    //For UI Restart button
-    public void RestartButton()
-    {
-        Debug.Log("Restart button clicked"); //delete
-        DataManager.instance.ResetGame();
-        SceneManager.LoadScene("LevelScene");
-    }
 
     //For UI Menu button
     public void MenuButton()
     {
-        Debug.Log("Menu button clicked"); //delete
+        Debug.Log("Continue button clicked"); //delete
         DataManager.instance.ResetGame();
         SceneManager.LoadScene("MainMenu");
     }
-
-    //For UI Exit button
-    public void QuitButton()
-    {
-        Debug.Log("Quit button clicked"); //delete
-        DataManager.instance.ResetGame();
-        Application.Quit();
-    }
-    #endregion
 }
