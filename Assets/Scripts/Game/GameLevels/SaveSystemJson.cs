@@ -7,13 +7,15 @@ using System.IO;
 public class SaveSystemJson
 {
     private bool useEncryption = false;
-    private readonly string encryptionCode = "tanyetsudpunoak";
+    private readonly string encryptionCode = "tanyetsudpunoak"; //based on 5 uncommon three-letter words
 
+    //Determines whether encryption is used
     public SaveSystemJson(bool useEncryption)
     {
         this.useEncryption = useEncryption;
     }
 
+    //Function save player data
     public void SavePlayerData(GameData data)
     {
         try
@@ -38,6 +40,7 @@ public class SaveSystemJson
         }
     }
 
+    //Function load player data
     public GameData LoadPlayerData()
     {
         GameData loadedData = null;

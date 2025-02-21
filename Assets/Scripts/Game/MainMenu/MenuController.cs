@@ -5,18 +5,12 @@ using UnityEngine;
 public class MenuController : MonoBehaviour
 {
     // private HowToDisplay howToDisplay;
-    public int isFirstLaunch;
-    public int isFirstLaunchPlaying;
+    [SerializeField] public int isFirstLaunch;
+    public int isFirstLaunchPlaying = 0;
 
     void Awake()
     {
         isFirstLaunch = 1;
-        isFirstLaunchPlaying = 0;
-    }
-
-    void Update()
-    {
-        
     }
 
     public void NotFirstLaunch()

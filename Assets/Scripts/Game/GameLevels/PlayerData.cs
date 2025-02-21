@@ -20,6 +20,7 @@ public class PlayerData : MonoBehaviour, DataInterface
     public bool isInjured = false;
     public bool isDead = false;
 
+    //Function to load game data via Data Interface
     public void LoadData(GameData data)
     {
         this.score = data.score;
@@ -33,6 +34,7 @@ public class PlayerData : MonoBehaviour, DataInterface
         OnKeyCollected.Invoke();
     }
 
+    //Function to save game data via Data Interface
     public void SaveData(ref GameData data)
     {
         data.score = this.score;
@@ -42,6 +44,7 @@ public class PlayerData : MonoBehaviour, DataInterface
         data.isKeyCollected = this.isKeyCollected;
     }
 
+    //Set isLevelStart to 0 (false)
     public void LevelStarted()
     {
         isLevelStart = 0;

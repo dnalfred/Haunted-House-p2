@@ -62,12 +62,14 @@ public class DataManager : MonoBehaviour
         saveSystem.SavePlayerData(gameData);
     }
 
+    //Reset all data for a new game
     public void ResetGame()
     {
         NewGame();
         saveSystem.SavePlayerData(gameData);
     }
 
+    //Resets game data on application quit
     private void OnApplicationQuit()
     {
         ResetGame();

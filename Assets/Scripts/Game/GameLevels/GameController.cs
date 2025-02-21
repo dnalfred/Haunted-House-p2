@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //To show game over screen
     private void GameOver()
     {
         gameOverDisplay.ShowGameOver();
