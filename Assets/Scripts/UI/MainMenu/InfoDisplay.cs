@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+public class InfoDisplay : MonoBehaviour
+{
+    private MenuController menuController;
+
+    public void Awake()
+    {
+        menuController = FindObjectOfType<MenuController>();
+    }
+
+    //For Menu Play button
+    public void ContinueButton()
+    {
+        Debug.Log("Continue clicked!"); //delete
+        if(menuController.isFirstLaunchPlaying == 1)
+        {
+            SceneManager.LoadScene ("LevelScene", LoadSceneMode.Single);
+        }
+        else if(menuController.isFirstLaunch == 1)
+        {
+            menuController.NotFirstLaunch();
+            HideInfo();
+        }
+        else
+        {
+            HideInfo();
+        }
+    }
+
+    //To hide how to play screen
+    public void HideInfo()
+    {
+        gameObject.SetActive(false);
+    }
+
+    //To show how to play screen  
+    public void ShowInfo()
+    {
+        gameObject.SetActive(true);
+    }
+}

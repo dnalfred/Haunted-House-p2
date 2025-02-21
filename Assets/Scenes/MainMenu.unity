@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 97151822}
   - component: {fileID: 97151821}
   - component: {fileID: 97151820}
+  - component: {fileID: 97151824}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -300,6 +301,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &97151824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97151819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88e2d0f6afa24b23ba1ed93a8ed2e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFirstLaunch: 0
+  isFirstLaunchPlaying: 0
 --- !u!1 &208465203
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +460,7 @@ GameObject:
   - component: {fileID: 319650486}
   - component: {fileID: 319650488}
   - component: {fileID: 319650487}
+  - component: {fileID: 319650489}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -516,6 +532,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319650485}
   m_CullTransparentMesh: 1
+--- !u!114 &319650489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319650485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a87e34e04c5480b94750fff9520c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &524463350
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,7 +730,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2034496674}
-        m_TargetAssemblyTypeName: MainMeneDisplay, Assembly-CSharp
+        m_TargetAssemblyTypeName: MainMenuDisplay, Assembly-CSharp
         m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
@@ -1619,7 +1647,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2034496674}
-        m_TargetAssemblyTypeName: MainMeneDisplay, Assembly-CSharp
+        m_TargetAssemblyTypeName: MainMenuDisplay, Assembly-CSharp
         m_MethodName: ScoresButton
         m_Mode: 1
         m_Arguments:
@@ -2297,7 +2325,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2034496674}
-        m_TargetAssemblyTypeName: MainMeneDisplay, Assembly-CSharp
+        m_TargetAssemblyTypeName: MainMenuDisplay, Assembly-CSharp
         m_MethodName: InfoButton
         m_Mode: 1
         m_Arguments:
@@ -2428,7 +2456,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2000386858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 319650489}
+        m_TargetAssemblyTypeName: InfoDisplay, Assembly-CSharp
+        m_MethodName: ContinueButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2000386858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,6 +2600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 083ec3450324b4a50afcb2c063189bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoDisplay: {fileID: 319650489}
 --- !u!1 &2056956272
 GameObject:
   m_ObjectHideFlags: 0
@@ -2644,7 +2685,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2034496674}
-        m_TargetAssemblyTypeName: MainMeneDisplay, Assembly-CSharp
+        m_TargetAssemblyTypeName: MainMenuDisplay, Assembly-CSharp
         m_MethodName: PlayButton
         m_Mode: 1
         m_Arguments:

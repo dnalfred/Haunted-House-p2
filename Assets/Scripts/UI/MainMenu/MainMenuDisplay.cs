@@ -4,19 +4,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class MainMeneDisplay : MonoBehaviour
+public class MainMenuDisplay : MonoBehaviour
 {
+    private MenuController menuController;
+    public InfoDisplay infoDisplay;
+
+    public void Awake()
+    {
+        menuController = FindObjectOfType<MenuController>();
+    }
+    
     //For Menu Play button
     public void PlayButton()
     {
         Debug.Log("Play button clicked!"); //delete
-        SceneManager.LoadScene ("LevelScene", LoadSceneMode.Single);
+        if(menuController.isFirstLaunch == 1)
+        {
+            menuController.FirstLaunchPlaying();
+            menuController.NotFirstLaunch();
+            InfoButton();            
+        }
+        else
+        {
+            SceneManager.LoadScene ("LevelScene", LoadSceneMode.Single);
+        }
     }
 
     //For Menu Information button
     public void InfoButton()
     {
         Debug.Log("Info button clicked!"); //delete
+        infoDisplay.ShowInfo();
     }
 
     //For Menu High Scores button
