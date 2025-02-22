@@ -18,7 +18,7 @@ public class MainMenuDisplay : MonoBehaviour
     public void PlayButton()
     {
         Debug.Log("Play button clicked!"); //delete
-        if(menuController.isFirstLaunch == 1)
+        if(menuController.isFirstLaunch)
         {
             menuController.FirstLaunchPlaying();
             menuController.NotFirstLaunch();

@@ -17,11 +17,11 @@ public class InfoDisplay : MonoBehaviour
     public void ContinueButton()
     {
         Debug.Log("Continue clicked!"); //delete
-        if(menuController.isFirstLaunchPlaying == 1)
+        if(menuController.isFirstLaunchPlaying)
         {
             SceneManager.LoadScene ("LevelScene", LoadSceneMode.Single);
         }
-        else if(menuController.isFirstLaunch == 1)
+        else if(menuController.isFirstLaunch)
         {
             menuController.NotFirstLaunch();
             HideInfo();
