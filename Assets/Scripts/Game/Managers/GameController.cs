@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
         //Find playerData object
         playerData = FindObjectOfType<PlayerData>();
 
+        //Load game first launch status (to reset if necessary)
         LoadLaunchStatus();
     }
 
@@ -50,16 +51,13 @@ public class GameController : MonoBehaviour
         {
             isFirstLaunch = (status == "True");
         }
-        Debug.Log("Launch status loaded in leve"); //delete
-        Debug.Log("Launch status: "+isFirstLaunch); //delete
-        
+        Debug.Log("Launch status loaded: "+isFirstLaunch); //delete
     }
 
     private void SaveLaunchStatus()
     {
         PlayerPrefs.SetString("FirstLaunchStatus", isFirstLaunch.ToString());
-        Debug.Log("Launch status saved in level"); //delete
-        Debug.Log("Launch status: "+isFirstLaunch); //delete
+        Debug.Log("Launch status saved: "+isFirstLaunch); //delete
     }
 
     private void ResetFirstLaunch()
