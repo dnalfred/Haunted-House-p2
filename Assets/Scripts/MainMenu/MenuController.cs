@@ -11,26 +11,12 @@ public class MenuController : MonoBehaviour
     public void Awake()
     {
         LoadLaunchStatus();
-        // if(isFirstLaunch != true && isFirstLaunch != false)
-        // {
-        //     isFirstLaunch = true;
-        // }
-        // isFirstLaunch = true;
-        Debug.Log("Launch status: "+isFirstLaunch); //delete
     }
 
     public void NotFirstLaunch()
     {
         isFirstLaunch = false;
         SaveLaunchStatus();
-        Debug.Log("Launch status: "+isFirstLaunch); //delete
-    }
-
-    public void ResetFirstLaunch()
-    {
-        isFirstLaunch = true;
-        SaveLaunchStatus();
-        Debug.Log("Launch status: "+isFirstLaunch); //delete
     }
 
     public void FirstLaunchPlaying()
@@ -38,15 +24,8 @@ public class MenuController : MonoBehaviour
         isFirstLaunchPlaying = true;
     }
 
-    public void SaveLaunchStatus()
-    {
-        Debug.Log("Launch status saved"); //delete
-        PlayerPrefs.SetString("FirstLaunchStatus", isFirstLaunch.ToString());
-    }
-
     public void LoadLaunchStatus()
     {
-        Debug.Log("Launch status loaded"); //delete
         string status = PlayerPrefs.GetString("FirstLaunchStatus");
         if(status == "")
         {
@@ -56,6 +35,23 @@ public class MenuController : MonoBehaviour
         {
             isFirstLaunch = (status == "True");
         }
+        Debug.Log("Launch status loaded"); //delete
+        Debug.Log("Launch status: "+isFirstLaunch); //delete
+    }
+
+    public void SaveLaunchStatus()
+    {
+        PlayerPrefs.SetString("FirstLaunchStatus", isFirstLaunch.ToString());
+        Debug.Log("Launch status saved"); //delete
+        Debug.Log("Launch status: "+isFirstLaunch); //delete
+
+    }
+
+    public void ResetFirstLaunch()
+    {
+        isFirstLaunch = true;
+        Debug.Log("Launch status reset"); //delete
+        SaveLaunchStatus();
     }
 
     private void OnApplicationQuit()

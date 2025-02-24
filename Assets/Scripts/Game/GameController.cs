@@ -7,11 +7,14 @@ public class GameController : MonoBehaviour
     public PlayerData playerData;
     public GameOverDisplay gameOverDisplay;
     public TimerDisplay timerDisplay;
+    private bool isFirstLaunch;
 
     private void Awake()
     {
         //Find playerData object
         playerData = FindObjectOfType<PlayerData>();
+
+        LoadLaunchStatus();
     }
 
     private void Update()
@@ -34,4 +37,41 @@ public class GameController : MonoBehaviour
     {
         gameOverDisplay.ShowGameOver();
     }
+
+    #region SAVE FIRST LAUNCH STATUS ON APPLICATION QUIT
+    private void LoadLaunchStatus()
+    {
+        string status = PlayerPrefs.GetString("FirstLaunchStatus");
+        if(status == "")
+        {
+            isFirstLaunch = true;
+        }
+        else
+        {
+            isFirstLaunch = (status == "True");
+        }
+        Debug.Log("Launch status loaded in leve"); //delete
+        Debug.Log("Launch status: "+isFirstLaunch); //delete
+        
+    }
+
+    private void SaveLaunchStatus()
+    {
+        PlayerPrefs.SetString("FirstLaunchStatus", isFirstLaunch.ToString());
+        Debug.Log("Launch status saved in level"); //delete
+        Debug.Log("Launch status: "+isFirstLaunch); //delete
+    }
+
+    private void ResetFirstLaunch()
+    {
+        isFirstLaunch = true;
+        Debug.Log("Launch status reset"); //delete
+        SaveLaunchStatus();
+    }
+
+    private void OnApplicationQuit()
+    {
+        ResetFirstLaunch();
+    }
+    #endregion
 }
