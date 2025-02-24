@@ -2304,6 +2304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 0}
   scoreText: {fileID: 1413847172}
+  buttonSound: {fileID: 8300000, guid: 87dc7d04b742e4587b30f61e9065c626, type: 3}
 --- !u!1001 &507455725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2756,6 +2757,7 @@ MonoBehaviour:
   playerData: {fileID: 0}
   timerText: {fileID: 53324394}
   titleText: {fileID: 1214434497}
+  timerBeep: {fileID: 8300000, guid: f5c873aba88b3485c8d87f01542c6bb4, type: 3}
 --- !u!1001 &629525108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3490,7 +3492,6 @@ GameObject:
   - component: {fileID: 809298404}
   - component: {fileID: 809298409}
   - component: {fileID: 809298408}
-  - component: {fileID: 809298412}
   - component: {fileID: 809298413}
   m_Layer: 0
   m_Name: Player
@@ -3650,6 +3651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69665583342ad4867908421d11cd0ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  injuredSound: {fileID: 8300000, guid: 939d5b7984bac4c1fb6581b2cbc64ea8, type: 3}
   walkSpeed: 5
   jumpForce: 4
 --- !u!95 &809298409
@@ -3673,21 +3675,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &809298412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 809298403}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 582ffa149dd2e4ca0a223d81bd69729c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerData: {fileID: 809298413}
-  gameOverDisplay: {fileID: 493014416}
-  timerDisplay: {fileID: 564957052}
 --- !u!114 &809298413
 MonoBehaviour:
   m_ObjectHideFlags: 0

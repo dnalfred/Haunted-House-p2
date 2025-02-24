@@ -10,13 +10,14 @@ public class TimerDisplay : MonoBehaviour
     public TextMeshProUGUI titleText;
     private float startTime = 4;
     private float timer;
+    [SerializeField] private AudioClip timerSound;
 
     public void Awake()
     {
         playerData = FindObjectOfType<PlayerData>();
     }
 
-    void Update()
+    private void Update()
     {
         timer = (float)(Time.deltaTime * 1.2); // timer moves slightly faster than Time.deltaTime
         startTime -= timer;

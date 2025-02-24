@@ -8,6 +8,7 @@ public class MainMenuDisplay : MonoBehaviour
 {
     private MenuController menuController;
     public InfoDisplay infoDisplay;
+    [SerializeField] private AudioClip buttonSound;
 
     public void Awake()
     {
@@ -18,6 +19,7 @@ public class MainMenuDisplay : MonoBehaviour
     public void PlayButton()
     {
         Debug.Log("Play button clicked!"); //delete
+        SoundManager.instance.PlaySoundClip(buttonSound, transform, 0.5f);
         if(menuController.isFirstLaunch)
         {
             menuController.FirstLaunchPlaying();
@@ -34,6 +36,7 @@ public class MainMenuDisplay : MonoBehaviour
     public void InfoButton()
     {
         Debug.Log("Info button clicked!"); //delete
+        SoundManager.instance.PlaySoundClip(buttonSound, transform, 0.5f);
         infoDisplay.ShowInfo();
     }
 
@@ -41,12 +44,14 @@ public class MainMenuDisplay : MonoBehaviour
     public void ScoresButton()
     {
         Debug.Log("Scores button clicked!"); //delete
+        SoundManager.instance.PlaySoundClip(buttonSound, transform, 0.5f);
     }
 
     //For Menu Quit button
     public void QuitButton()
     {
         Debug.Log("Quit button clicked!"); //delete
+        SoundManager.instance.PlaySoundClip(buttonSound, transform, 0.5f);
         Application.Quit();
     }
 }

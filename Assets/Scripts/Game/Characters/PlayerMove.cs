@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     // private bool isClimbing;
     private bool isFallingOff = false;
     private bool toReset = true;
+    [SerializeField] private AudioClip injuredSound;
 
     [SerializeField] private float walkSpeed = 5; //regular walking speed
     [SerializeField] private float jumpForce = 4; //regular jumping strength
@@ -56,6 +57,7 @@ public class PlayerMove : MonoBehaviour
             {
                 toReset = false;
             }
+            SoundManager.instance.PlaySoundClip(injuredSound, transform, 0.5f);
             FallOffScreen();
         }
 

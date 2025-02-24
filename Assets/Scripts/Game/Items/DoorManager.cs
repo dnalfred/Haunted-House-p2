@@ -7,6 +7,8 @@ public class DoorManager : MonoBehaviour
     PlayerData playerData;
     [SerializeField] private bool isFakeDoor;
     [SerializeField] private bool isLevelTrigger;
+    [SerializeField] private AudioClip doorClosedSound;
+    [SerializeField] private AudioClip doorOpenSound;
 
     private void Awake()
     {
@@ -14,11 +16,16 @@ public class DoorManager : MonoBehaviour
     }
 
     //Checks if player has the key to unlock the door
-    private void OpenDoor()
+    private void CheckDoor()
     {
         if(playerData.isKeyCollected == 1)
         {
+            SoundManager.instance.PlaySoundClip(doorOpenSound, transform, 0.5f);
             Destroy(gameObject);
+        }
+        else
+        {
+            SoundManager.instance.PlaySoundClip(doorClosedSound, transform, 0.5f);
         }
     }
 
@@ -31,7 +38,7 @@ public class DoorManager : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player" && !isFakeDoor && !isLevelTrigger)
         {
-            OpenDoor();
+            CheckDoor();
         }
 
         if(collision.gameObject.tag == "Player" && isLevelTrigger)

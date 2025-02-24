@@ -8,6 +8,7 @@ public class GameOverDisplay : MonoBehaviour
 {
     public PlayerData playerData;
     public TMP_Text scoreText;
+    [SerializeField] private AudioClip buttonSound;
 
     private void Awake()
     {
@@ -19,15 +20,6 @@ public class GameOverDisplay : MonoBehaviour
     {
         //Hide game over screen when game starts
         HideGameOver();
-    }
-
-    private void Update()
-    {
-        //Show game over screen if player health = 0
-        if(playerData.health == 0)
-        {
-            // ShowGameOver();
-        }
     }
 
     //To hide game over screen
@@ -48,6 +40,7 @@ public class GameOverDisplay : MonoBehaviour
     {
         Debug.Log("Continue button clicked"); //delete
         DataManager.instance.ResetGame();
+        SoundManager.instance.PlaySoundClip(buttonSound, transform, 0.5f);
         SceneManager.LoadScene("MainMenu");
     }
 }
