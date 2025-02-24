@@ -5786,6 +5786,7 @@ GameObject:
   - component: {fileID: 1760944690}
   - component: {fileID: 1760944689}
   - component: {fileID: 1760944691}
+  - component: {fileID: 1760944692}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5836,6 +5837,19 @@ MonoBehaviour:
   playerData: {fileID: 809298413}
   gameOverDisplay: {fileID: 493014416}
   timerDisplay: {fileID: 564957052}
+--- !u!114 &1760944692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760944688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390bdb295f5f94f1899c432ac434bf84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundObject: {fileID: 4928479299883397925, guid: 8445c4627685046cc8694a065c1648ab, type: 3}
 --- !u!1 &1761764449
 GameObject:
   m_ObjectHideFlags: 0

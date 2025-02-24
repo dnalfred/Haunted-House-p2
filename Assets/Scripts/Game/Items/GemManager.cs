@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class GemManager : MonoBehaviour, DataInterface
 {
     private PlayerData playerData;
+    [SerializeField] private AudioClip gemSound;
     
     private int itemPoints = 100; //points for each item collected
     [SerializeField] private string id;
@@ -47,6 +48,7 @@ public class GemManager : MonoBehaviour, DataInterface
         //on collision with the player, the item is destroyed and player's score is increased
         if(collider.gameObject.tag == "Player")
         {
+            SoundManager.instance.PlaySoundClip(gemSound, transform, 0.5f);
             Destroy(gameObject);
             playerData.AddScore(itemPoints);
             isCollected = true;
