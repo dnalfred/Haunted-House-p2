@@ -18,7 +18,7 @@ public class InfoDisplay : MonoBehaviour
     public void ContinueButton()
     {
         Debug.Log("Continue clicked!"); //delete
-        SoundManager.instance.PlaySoundClip(buttonSound, transform, 0.5f);
+        SoundManager.instance.PlaySoundClip(SoundManager.instance.buttonSound, transform, 0.5f);
         if(menuController.isFirstLaunchPlaying)
         {
             SceneManager.LoadScene ("LevelScene", LoadSceneMode.Single);

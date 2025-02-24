@@ -11,7 +11,6 @@ private PlayerData playerData;
     [SerializeField] private string id;
     private bool isCollected = false;
     public UnityEvent OnKeyCollected;
-    [SerializeField] private AudioClip collectedSound;
 
     private void Awake()
     {
@@ -48,7 +47,7 @@ private PlayerData playerData;
         //On collision with the player, the item is removed and player's score is increased
         if(collider.gameObject.tag == "Player")
         {
-            SoundManager.instance.PlaySoundClip(collectedSound, transform, 0.5f);
+            SoundManager.instance.PlaySoundClip(SoundManager.instance.keySound, transform, 0.5f);
             Destroy(gameObject);
             playerData.AddScore(itemPoints);
             isCollected = true;

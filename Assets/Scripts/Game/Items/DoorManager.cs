@@ -7,8 +7,6 @@ public class DoorManager : MonoBehaviour
     PlayerData playerData;
     [SerializeField] private bool isFakeDoor;
     [SerializeField] private bool isLevelTrigger;
-    [SerializeField] private AudioClip doorClosedSound;
-    [SerializeField] private AudioClip doorOpenSound;
 
     private void Awake()
     {
@@ -20,12 +18,12 @@ public class DoorManager : MonoBehaviour
     {
         if(playerData.isKeyCollected == 1)
         {
-            SoundManager.instance.PlaySoundClip(doorOpenSound, transform, 0.5f);
+            SoundManager.instance.PlaySoundClip(SoundManager.instance.doorOpeningSound, transform, 0.5f);
             Destroy(gameObject);
         }
         else
         {
-            SoundManager.instance.PlaySoundClip(doorClosedSound, transform, 0.5f);
+            SoundManager.instance.PlaySoundClip(SoundManager.instance.doorLockedSound, transform, 0.5f);
         }
     }
 

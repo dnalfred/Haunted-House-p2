@@ -40,7 +40,7 @@ public class GameOverDisplay : MonoBehaviour
     {
         Debug.Log("Continue button clicked"); //delete
         DataManager.instance.ResetGame();
-        SoundManager.instance.PlaySoundClip(buttonSound, transform, 0.5f);
+        SoundManager.instance.PlaySoundClip(SoundManager.instance.buttonSound, transform, 0.5f);
         SceneManager.LoadScene("MainMenu");
     }
 }

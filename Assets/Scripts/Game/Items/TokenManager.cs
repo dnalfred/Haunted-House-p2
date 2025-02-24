@@ -7,7 +7,6 @@ public class TokenManager : MonoBehaviour, DataInterface
     private PlayerData playerData;
     private int itemPoints = 10; //points for each token collected
     private bool isCollected = false;
-    [SerializeField] private AudioClip collectedSound;
 
     private void Awake()
     {
@@ -45,7 +44,7 @@ public class TokenManager : MonoBehaviour, DataInterface
         //on collision with the player, the token is destroyed and player's score is increased
         if(collider.gameObject.tag == "Player")
         {
-            SoundManager.instance.PlaySoundClip(collectedSound, transform, 0.5f);
+            SoundManager.instance.PlaySoundClip(SoundManager.instance.tokenSound, transform, 0.5f);
             Destroy(gameObject);
             playerData.AddScore(itemPoints);
             isCollected = true;
