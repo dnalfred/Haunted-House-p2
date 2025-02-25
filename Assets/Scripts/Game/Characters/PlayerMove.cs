@@ -56,7 +56,7 @@ public class PlayerMove : MonoBehaviour
             {
                 toReset = false;
             }
-            SoundManager.instance.PlaySoundClip(SoundManager.instance.injuredSound, transform, 0.5f);
+            SoundManager.instance.PlaySoundFXClip(SoundManager.instance.injuredSound, transform);
             FallOffScreen();
         }
 

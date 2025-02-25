@@ -18,12 +18,12 @@ public class DoorManager : MonoBehaviour
     {
         if(playerData.isKeyCollected == 1)
         {
-            SoundManager.instance.PlaySoundClip(SoundManager.instance.doorOpeningSound, transform, 0.5f);
+            SoundManager.instance.PlaySoundFXClip(SoundManager.instance.doorOpeningSound, transform);
             Destroy(gameObject);
         }
         else
         {
-            SoundManager.instance.PlaySoundClip(SoundManager.instance.doorLockedSound, transform, 0.5f);
+            SoundManager.instance.PlaySoundFXClip(SoundManager.instance.doorLockedSound, transform);
         }
     }
 

@@ -47,7 +47,7 @@ private PlayerData playerData;
         //On collision with the player, the item is removed and player's score is increased
         if(collider.gameObject.tag == "Player")
         {
-            SoundManager.instance.PlaySoundClip(SoundManager.instance.keySound, transform, 0.5f);
+            SoundManager.instance.PlaySoundFXClip(SoundManager.instance.keySound, transform);
             Destroy(gameObject);
             playerData.AddScore(itemPoints);
             isCollected = true;

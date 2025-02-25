@@ -44,7 +44,7 @@ public class TokenManager : MonoBehaviour, DataInterface
         //on collision with the player, the token is destroyed and player's score is increased
         if(collider.gameObject.tag == "Player")
         {
-            SoundManager.instance.PlaySoundClip(SoundManager.instance.tokenSound, transform, 0.5f);
+            SoundManager.instance.PlaySoundFXClip(SoundManager.instance.tokenSound, transform);
             Destroy(gameObject);
             playerData.AddScore(itemPoints);
             isCollected = true;

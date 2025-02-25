@@ -47,7 +47,7 @@ public class GemManager : MonoBehaviour, DataInterface
         //on collision with the player, the item is destroyed and player's score is increased
         if(collider.gameObject.tag == "Player")
         {
-            SoundManager.instance.PlaySoundClip(SoundManager.instance.gemSound, transform, 0.5f);
+            SoundManager.instance.PlaySoundFXClip(SoundManager.instance.gemSound, transform);
             Destroy(gameObject);
             playerData.AddScore(itemPoints);
             isCollected = true;

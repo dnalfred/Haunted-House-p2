@@ -18,7 +18,7 @@ public class MainMenuDisplay : MonoBehaviour
     public void PlayButton()
     {
         Debug.Log("Play button clicked!"); //delete
-        SoundManager.instance.PlaySoundClip(SoundManager.instance.buttonSound, transform, 0.5f);
+        SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         if(menuController.isFirstLaunch)
         {
             menuController.FirstLaunchPlaying();
@@ -35,7 +35,7 @@ public class MainMenuDisplay : MonoBehaviour
     public void InfoButton()
     {
         Debug.Log("Info button clicked!"); //delete
-        SoundManager.instance.PlaySoundClip(SoundManager.instance.buttonSound, transform, 0.5f);
+        SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         infoDisplay.ShowInfo();
     }
 
@@ -43,14 +43,14 @@ public class MainMenuDisplay : MonoBehaviour
     public void ScoresButton()
     {
         Debug.Log("Scores button clicked!"); //delete
-        SoundManager.instance.PlaySoundClip(SoundManager.instance.buttonSound, transform, 0.5f);
+        SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
     }
 
     //For Menu Quit button
     public void QuitButton()
     {
         Debug.Log("Quit button clicked!"); //delete
-        SoundManager.instance.PlaySoundClip(SoundManager.instance.buttonSound, transform, 0.5f);
+        SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         Application.Quit();
     }
 }
