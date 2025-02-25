@@ -8,34 +8,50 @@ public class TimerDisplay : MonoBehaviour
     public PlayerData playerData;
     public TMP_Text timerText;
     public TextMeshProUGUI titleText;
-    private float startTime = 4;
+    private float startTime = 3;
     private float timer;
-    [SerializeField] private AudioClip timerSound;
+    public float timerSpeed = 1.2f;
 
     public void Awake()
     {
         playerData = FindObjectOfType<PlayerData>();
     }
 
+    private void Start()
+    {
+        SoundManager.instance.PlaySoundFXClip(SoundManager.instance.timerSound, transform);
+    }
+
     private void Update()
     {
-        timer = (float)(Time.deltaTime * 1.2); // timer moves slightly faster than Time.deltaTime
-        startTime -= timer;
-        int clicks = Mathf.FloorToInt(startTime % 60);
-        if(startTime > 0)
+        timer += Time.deltaTime * timerSpeed;
+        if(timer > 1)
         {
-            timerText.text = clicks.ToString();
-        }
-        if(startTime < 1)
-        {
-            timerText.text = "";
-            titleText.fontSize = 250;   
-            titleText.text = "Go!";
-        }
-        if(startTime < 0)
-        {
-            HideTimer();
-            playerData.LevelStarted();
+            timer = 0f;
+            startTime -= 1;
+
+            //Execute this while time is counting down, startTime > 0
+            if(startTime > 0)
+            {
+                timerText.text = startTime.ToString();
+                SoundManager.instance.PlaySoundFXClip(SoundManager.instance.timerSound, transform);
+            }
+            
+            //Execute this when startTime = 0
+            if (startTime == 0)
+            {
+                timerText.text = "";
+                titleText.fontSize = 250;
+                titleText.text = "Go!";
+                SoundManager.instance.PlaySoundFXClip(SoundManager.instance.timerSound, transform);
+            }
+
+            //Execute this when start time < 0
+            if(startTime < 0)
+            {
+                HideTimer();
+                playerData.LevelStarted();
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("AUDIO CLIPS")]
     public AudioClip backgroundMusic;
+    public AudioClip timerSound;
     public AudioClip buttonSound;
     public AudioClip tokenSound;
     public AudioClip gemSound;

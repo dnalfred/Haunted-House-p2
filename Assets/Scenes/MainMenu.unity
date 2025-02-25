@@ -575,7 +575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a87e34e04c5480b94750fff9520c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSound: {fileID: 8300000, guid: 87dc7d04b742e4587b30f61e9065c626, type: 3}
 --- !u!1 &524463350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,6 +1893,7 @@ MonoBehaviour:
   musicSource: {fileID: 512547764433212111}
   sfxSource: {fileID: 8260132040544911986}
   backgroundMusic: {fileID: 8300000, guid: d188de8f474704ee98481f76a23460bf, type: 3}
+  timerSound: {fileID: 8300000, guid: 939d5b7984bac4c1fb6581b2cbc64ea8, type: 3}
   buttonSound: {fileID: 8300000, guid: 87dc7d04b742e4587b30f61e9065c626, type: 3}
   tokenSound: {fileID: 8300000, guid: 2d45d6c23bf7d445b8788fc35781d7ff, type: 3}
   gemSound: {fileID: 8300000, guid: 939d5b7984bac4c1fb6581b2cbc64ea8, type: 3}
