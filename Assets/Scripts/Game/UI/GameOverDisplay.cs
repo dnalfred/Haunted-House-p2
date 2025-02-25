@@ -8,7 +8,6 @@ public class GameOverDisplay : MonoBehaviour
 {
     public PlayerData playerData;
     public TMP_Text scoreText;
-    [SerializeField] private AudioClip buttonSound;
 
     private void Awake()
     {

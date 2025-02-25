@@ -7,7 +7,6 @@ using TMPro;
 public class InfoDisplay : MonoBehaviour
 {
     private MenuController menuController;
-    [SerializeField] private AudioClip buttonSound;
 
     public void Awake()
     {
