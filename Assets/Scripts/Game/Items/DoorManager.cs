@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class DoorManager : MonoBehaviour
 {
-    PlayerData playerData;
+    private Rigidbody2D body;
+    private PlayerData playerData;
     [SerializeField] private bool isFakeDoor;
     [SerializeField] private bool isLevelTrigger;
+    private float doorOpeningSpeed = 1.5f;
 
     private void Awake()
     {
         playerData = FindObjectOfType<PlayerData>();
+        
+        //Find components on the door object
+        body = gameObject.GetComponent<Rigidbody2D>();
     }
 
     //Checks if player has the key to unlock the door
@@ -19,12 +24,17 @@ public class DoorManager : MonoBehaviour
         if(playerData.isKeyCollected == 1)
         {
             SoundManager.instance.PlaySoundFXClip(SoundManager.instance.doorOpeningSound, transform);
-            Destroy(gameObject);
+            OpenDoor();
         }
         else
         {
             SoundManager.instance.PlaySoundFXClip(SoundManager.instance.doorLockedSound, transform);
         }
+    }
+
+    private void OpenDoor()
+    {
+        body.velocity = new Vector2(doorOpeningSpeed, body.velocity.y);
     }
 
     private void NextLevel()
@@ -38,8 +48,17 @@ public class DoorManager : MonoBehaviour
         {
             CheckDoor();
         }
+    }
 
-        if(collision.gameObject.tag == "Player" && isLevelTrigger)
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.tag == "levelTrigger")
+        {
+            Debug.Log("Door destroyed");
+            Destroy(gameObject);
+        }
+
+        if(collider.gameObject.tag == "Player" && isLevelTrigger)
         {
             NextLevel();
         }

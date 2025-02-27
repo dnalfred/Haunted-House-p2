@@ -21,8 +21,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip injuredSound;
 
     [Header("VOLUME CONTROLS")]
-    public float musicVolume;
-    public float sfxVolume;    
+    [SerializeField] private  float musicVolume;
+    [SerializeField] private  float sfxVolume;    
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class SoundManager : MonoBehaviour
         }
 
         musicVolume = 0.2f;
-        sfxVolume = 0.8f;
+        sfxVolume = 1f;
     }
 
     private void Start()

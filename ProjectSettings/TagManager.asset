@@ -8,6 +8,7 @@ TagManager:
   - ladder
   - token
   - enemy
+  - levelTrigger
   layers:
   - Default
   - TransparentFX
