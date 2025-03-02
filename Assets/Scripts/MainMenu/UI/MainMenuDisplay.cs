@@ -8,6 +8,7 @@ public class MainMenuDisplay : MonoBehaviour
 {
     private MenuController menuController;
     public InfoDisplay infoDisplay;
+    public ScoresDisplay scoresDisplay;
 
     public void Awake()
     {
@@ -44,6 +45,7 @@ public class MainMenuDisplay : MonoBehaviour
     {
         Debug.Log("Scores button clicked!"); //delete
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
+        scoresDisplay.ShowScores();
     }
 
     //For Menu Quit button
