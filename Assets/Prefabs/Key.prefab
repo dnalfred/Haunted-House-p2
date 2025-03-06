@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1665278781093088498}
   - component: {fileID: 3765903740435422941}
   - component: {fileID: 1762993440490037399}
+  - component: {fileID: 3662254089258579641}
   - component: {fileID: 3280826177089450062}
   m_Layer: 0
   m_Name: Key
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6184246922856812429}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8, y: 3.85, z: 0}
+  m_LocalPosition: {x: -1.8, y: 3.85, z: -0.1}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -131,6 +132,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.99999964, y: 0.4782601}
   m_EdgeRadius: 0
+--- !u!50 &3662254089258579641
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184246922856812429}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &3280826177089450062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,4 +175,3 @@ MonoBehaviour:
   OnKeyCollected:
     m_PersistentCalls:
       m_Calls: []
-  collectedSound: {fileID: 8300000, guid: f5c873aba88b3485c8d87f01542c6bb4, type: 3}
