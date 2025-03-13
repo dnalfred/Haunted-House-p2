@@ -45,7 +45,8 @@ public class MainMenuDisplay : MonoBehaviour
     {
         Debug.Log("Scores button clicked!"); //delete
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
-        scoresDisplay.ShowScores();
+        // scoresDisplay.ShowScores();
+        SceneManager.LoadScene ("HighScores", LoadSceneMode.Single);
     }
 
     //For Menu Quit button
