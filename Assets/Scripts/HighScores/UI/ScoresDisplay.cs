@@ -14,7 +14,7 @@ public class ScoresDisplay : MonoBehaviour
     {
         //Find 
         entryContainer = transform.Find("HighscoreEntries");
-        entryTemplate = entryContainer.Find("EntryTemplate");
+        entryTemplate = entryContainer.Find("EntryTemplate");        
 
         //Hide black highscore entry
         entryTemplate.gameObject.SetActive(false);
@@ -46,15 +46,27 @@ public class ScoresDisplay : MonoBehaviour
                 case 3: rankString = "3rd"; break;
             }
             entryTransform.Find("posText").GetComponent<TMP_Text>().text = rankString;
+            if(rank<4)
+            {
+                entryTransform.Find("posText").GetComponent<TMP_Text>().color = new Color32 (255, 215, 95, 255);
+            }
+
+            //Set name string
+            string nameString = "AAA";
+            entryTransform.Find("nameText").GetComponent<TMP_Text>().text = nameString;
+            if(rank<4)
+            {
+                entryTransform.Find("nameText").GetComponent<TMP_Text>().color = new Color32 (255, 215, 95, 255);
+            }
 
             //Set score string
             int score = Random.Range (0, 1000);
             string scoreString = score.ToString();
             entryTransform.Find("scoreText").GetComponent<TMP_Text>().text = scoreString;
-
-            //Set name string
-            string nameString = "AAA";
-            entryTransform.Find("nameText").GetComponent<TMP_Text>().text = nameString;
+            if(rank<4)
+            {
+                entryTransform.Find("scoreText").GetComponent<TMP_Text>().color = new Color32 (255, 215, 95, 255);
+            }
         }
     }
 
