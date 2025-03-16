@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
-public class ScoresDisplay : MonoBehaviour
+public class HighScoresData : MonoBehaviour
 {
     private Transform entryContainer;
     private Transform entryTemplate;
