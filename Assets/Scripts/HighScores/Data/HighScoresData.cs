@@ -1,16 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
 using TMPro;
 
 public class HighScoresData : MonoBehaviour
 {
     private Transform entryContainer;
     private Transform entryTemplate;
-    private List<HighscoreEntry> highscoreEntryList;
+    public HighscoresData highscores;
+    public List<HighscoreEntry> highscoreEntryList;
     private List<Transform> highscoreEntryTransformList;
     float templateHeight = 60f;
 
+    private readonly string encryptionCode = "uluicedabvanrad"; //contains 5 uncommon three-letter words
+
+    public class HighscoresData
+    {
+        public List<HighscoreEntry> highscoreEntryList;
+    }
+
+    #region AWAKE & START
     private void Awake()
     {
         //Find 
@@ -19,46 +30,50 @@ public class HighScoresData : MonoBehaviour
 
         //Hide black highscore entry
         entryTemplate.gameObject.SetActive(false);
+
+        //Load saved highscore data
+        LoadHighScores();
+
+        //Create new highscore list (for testing)
+        // CreateNewHighScoreList();
     }
 
     private void Start()
     {
-        CreateNewLists();
+        //Display High Scores Table
+        DisplayHighScores(highscoreEntryList);
     }
+    #endregion
 
-    private void CreateNewLists()
+    #region CREATE NEW LIST
+    private void CreateNewHighScoreList()
     {
         //Create new highscoreEntryList (for testing)
         highscoreEntryList = new List<HighscoreEntry>()
         {
-            new HighscoreEntry { score = 1233, name = "AAA"},
-            new HighscoreEntry { score = 455, name = "BBB"},
-            new HighscoreEntry { score = 102, name = "CCC"},
-            new HighscoreEntry { score = 783, name = "DDD"},
-            new HighscoreEntry { score = 1045, name = "EEE"},
-            new HighscoreEntry { score = 287, name = "FFF"},
-            new HighscoreEntry { score = 65, name = "GGG"},
-            new HighscoreEntry { score = 953, name = "HHH"},
-            new HighscoreEntry { score = 627, name = "III"},
-            new HighscoreEntry { score = 1312, name = "JJJ"},
+            new HighscoreEntry ("AAA", 1233),
+            new HighscoreEntry ("BBB", 455),
+            new HighscoreEntry ("CCC", 102),
+            new HighscoreEntry ("DDD", 783),
+            new HighscoreEntry ("EEE", 1045),
+            new HighscoreEntry ("FFF", 287),
+            new HighscoreEntry ("GGG", 65),
+            new HighscoreEntry ("HHH", 953),
+            new HighscoreEntry ("III", 627),
+            new HighscoreEntry ("JJJ", 1312)
         };
 
         //Sort List
-        for (int i=0; i<highscoreEntryList.Count; i++)
-        {
-            for (int j=i+1; j<highscoreEntryList.Count; j++)
-            {
-                //Check if next element is larger
-                if(highscoreEntryList[j].score > highscoreEntryList[i].score)
-                {
-                    //Swap
-                    HighscoreEntry temporaryEntry = highscoreEntryList[i];
-                    highscoreEntryList[i] = highscoreEntryList[j];
-                    highscoreEntryList[j] = temporaryEntry;
-                }
-            }
-        }
+        SortScores(highscoreEntryList);
 
+        //Save New High Scores
+        SaveHighScores();
+    }
+    #endregion
+
+    #region DISPLAY HIGH SCORE TABLE
+    private void DisplayHighScores(List<HighscoreEntry> highscoreEntryList)
+    {
         //Create new highscoreEntryTransformList
         highscoreEntryTransformList = new List<Transform>();
 
@@ -100,10 +115,100 @@ public class HighScoresData : MonoBehaviour
 
         transformList.Add(entryTransform);
     }
+    #endregion
 
-    private class HighscoreEntry
+    #region ADD & SORT
+    private void AddHighscoreEntry(string newName, int newScore)
     {
-        public string name;
-        public int score;
+        HighscoreEntry newEntry = new HighscoreEntry (newName, newScore);
     }
+
+    private void SortScores(List<HighscoreEntry> highscoreEntryList)
+    {
+        for (int i=0; i<highscoreEntryList.Count; i++)
+        {
+            for (int j=i+1; j<highscoreEntryList.Count; j++)
+            {
+                //Check if next element is larger
+                if(highscoreEntryList[j].score > highscoreEntryList[i].score)
+                {
+                    //Swap
+                    HighscoreEntry temporaryEntry = highscoreEntryList[i];
+                    highscoreEntryList[i] = highscoreEntryList[j];
+                    highscoreEntryList[j] = temporaryEntry;
+                }
+            }
+        }        
+    }
+    #endregion
+
+    #region SAVE & LOAD
+    private void SaveHighScores()
+    {
+        highscores = new HighscoresData {highscoreEntryList = highscoreEntryList};
+        string dataToSave = JsonUtility.ToJson(highscores);
+        Debug.Log(dataToSave);
+        try
+        {
+            FileStream stream = new FileStream(FilePath(), FileMode.Create);
+            dataToSave = EncryptDecrypt(dataToSave);
+            using (stream)
+            {
+                using (StreamWriter writer = new StreamWriter(stream))
+                {
+                    writer.Write(dataToSave);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error saving data to file: " + e);
+        }
+    }
+
+    private void LoadHighScores()
+    {
+        if(File.Exists(FilePath()))
+        {
+            try
+            {
+                string dataToLoad = "";
+                FileStream stream = new FileStream(FilePath(), FileMode.Open);
+                using (stream)
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        dataToLoad = reader.ReadToEnd();
+                    }
+                }
+                dataToLoad = EncryptDecrypt(dataToLoad);
+                Debug.Log(dataToLoad);
+                highscores = JsonUtility.FromJson<HighscoresData>(dataToLoad);
+                highscoreEntryList = highscores.highscoreEntryList;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Error loading data from file: " + e);
+            }
+        }
+    }
+
+    //Function to return the file path for saved highscore data
+    public static string FilePath()
+    {
+        string filePath = Application.persistentDataPath + "/highscores.save";
+        return filePath;
+    }
+
+    //Function to encrypt / decrypt data
+    private string EncryptDecrypt(string data)
+    {
+        string modifiedData = "";
+        for (int i = 0; i < data.Length; i++)
+        {
+            modifiedData += (char) (data[i] ^ encryptionCode[i % encryptionCode.Length]);
+        }
+        return modifiedData;
+    }
+    #endregion
 }
