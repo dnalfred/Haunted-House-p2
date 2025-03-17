@@ -7,12 +7,14 @@ using TMPro;
 
 public class HighScoresData : MonoBehaviour
 {
-    private Transform entryContainer;
-    private Transform entryTemplate;
+    public static HighScoresData instance;
+
+    // private Transform entryContainer;
+    // private Transform entryTemplate;
     public HighscoresData highscores;
     public List<HighscoreEntry> highscoreEntryList;
     private List<Transform> highscoreEntryTransformList;
-    float templateHeight = 60f;
+    // float templateHeight = 60f;
 
     private readonly string encryptionCode = "uluicedabvanrad"; //contains 5 uncommon three-letter words
 
@@ -24,12 +26,22 @@ public class HighScoresData : MonoBehaviour
     #region AWAKE & START
     private void Awake()
     {
-        //Find 
-        entryContainer = transform.Find("HighscoreEntries");
-        entryTemplate = entryContainer.Find("EntryTemplate");        
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
-        //Hide black highscore entry
-        entryTemplate.gameObject.SetActive(false);
+        //Find 
+        // entryContainer = transform.Find("HighscoreEntries");
+        // entryTemplate = entryContainer.Find("EntryTemplate");        
+
+        // //Hide black highscore entry
+        // entryTemplate.gameObject.SetActive(false);
 
         //Load saved highscore data
         LoadHighScores();
@@ -40,10 +52,10 @@ public class HighScoresData : MonoBehaviour
 
     private void Start()
     {
-        // AddHighscoreEntry("ZZZ", 999); //For testing
+        // AddHighscoreEntry("ZZZ", 1045); //For testing
 
         //Display High Scores Table
-        DisplayHighScores(highscoreEntryList);
+        // DisplayHighScores(highscoreEntryList);
     }
     #endregion
 
@@ -74,51 +86,51 @@ public class HighScoresData : MonoBehaviour
     }
     #endregion
 
-    #region DISPLAY HIGH SCORE TABLE
-    private void DisplayHighScores(List<HighscoreEntry> highscoreEntryList)
-    {
-        //Create new highscoreEntryTransformList
-        highscoreEntryTransformList = new List<Transform>();
+    // #region DISPLAY HIGH SCORE TABLE
+    // private void DisplayHighScores(List<HighscoreEntry> highscoreEntryList)
+    // {
+    //     //Create new highscoreEntryTransformList
+    //     highscoreEntryTransformList = new List<Transform>();
 
-        //Populate high score table
-        foreach (HighscoreEntry highscoreEntry in highscoreEntryList)
-        {
-            CreateHighScoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
-        }
-    }
+    //     //Populate high score table
+    //     foreach (HighscoreEntry highscoreEntry in highscoreEntryList)
+    //     {
+    //         CreateHighScoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
+    //     }
+    // }
 
-    //Create a single highscore entry
-    private void CreateHighScoreEntryTransform (HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList)
-    {
-        Transform entryTransform = Instantiate(entryTemplate, container);
-        RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
-        entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight*transformList.Count);
-        entryTransform.gameObject.SetActive(true);
+    // //Create a single highscore entry
+    // private void CreateHighScoreEntryTransform (HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList)
+    // {
+    //     Transform entryTransform = Instantiate(entryTemplate, container);
+    //     RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
+    //     entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight*transformList.Count);
+    //     entryTransform.gameObject.SetActive(true);
 
-        //Set rank
-        int rank = transformList.Count+1;
-        string rankString;
-        switch (rank)
-        {
-            default: rankString = rank + "th"; break;
-            case 1: rankString = "1st"; break;
-            case 2: rankString = "2nd"; break;
-            case 3: rankString = "3rd"; break;
-        }
-        entryTransform.Find("posText").GetComponent<TMP_Text>().text = rankString;
+    //     //Set rank
+    //     int rank = transformList.Count+1;
+    //     string rankString;
+    //     switch (rank)
+    //     {
+    //         default: rankString = rank + "th"; break;
+    //         case 1: rankString = "1st"; break;
+    //         case 2: rankString = "2nd"; break;
+    //         case 3: rankString = "3rd"; break;
+    //     }
+    //     entryTransform.Find("posText").GetComponent<TMP_Text>().text = rankString;
 
-        //Set score
-        int score = highscoreEntry.score;
-        string scoreString = score.ToString();
-        entryTransform.Find("scoreText").GetComponent<TMP_Text>().text = scoreString;
+    //     //Set score
+    //     int score = highscoreEntry.score;
+    //     string scoreString = score.ToString();
+    //     entryTransform.Find("scoreText").GetComponent<TMP_Text>().text = scoreString;
 
-        //Set name
-        string nameString = highscoreEntry.name;
-        entryTransform.Find("nameText").GetComponent<TMP_Text>().text = nameString;
+    //     //Set name
+    //     string nameString = highscoreEntry.name;
+    //     entryTransform.Find("nameText").GetComponent<TMP_Text>().text = nameString;
 
-        transformList.Add(entryTransform);
-    }
-    #endregion
+    //     transformList.Add(entryTransform);
+    // }
+    // #endregion
 
     #region ADD & SORT
     private void AddHighscoreEntry(string newName, int newScore)
@@ -127,7 +139,7 @@ public class HighScoresData : MonoBehaviour
         highscores.highscoreEntryList.Add(newEntry);
         SortScores(highscores.highscoreEntryList);
         SaveHighScores();
-        DisplayHighScores(highscores.highscoreEntryList);
+        // DisplayHighScores(highscores.highscoreEntryList);
     }
 
     private void SortScores(List<HighscoreEntry> highscoreEntryList)

@@ -63,6 +63,7 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
     }
 
+    // OLD CODE KEPT FOR REFERENCE
     // public void PlaySoundClip (AudioClip audioClip, Transform transform, float volume)
     // {
     //     //Create AudioSource gameObject
