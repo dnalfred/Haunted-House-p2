@@ -66,7 +66,7 @@ public class EnemyMove : MonoBehaviour
         SetDirection();
 
         //After game starts, enemy flies until it reaches a boundary or detects/hits the player
-        if(playerData.isLevelStart == 1 || playerData.isInjured)
+        if(playerData.isLevelStart == 1 || playerData.isInjured || playerData.isLevelEnd == 1)
         {
             Freeze();
         }

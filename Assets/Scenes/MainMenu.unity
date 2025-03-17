@@ -2489,14 +2489,14 @@ MonoBehaviour:
   musicSource: {fileID: 512547764433212111}
   sfxSource: {fileID: 8260132040544911986}
   backgroundMusic: {fileID: 8300000, guid: d188de8f474704ee98481f76a23460bf, type: 3}
-  timerSound: {fileID: 8300000, guid: 65ddd148dc3cb4b37a6ede7b303cc662, type: 3}
+  timerSound: {fileID: 8300000, guid: a0b2654865e774bdb9f23d7ed71bcf9a, type: 3}
   buttonSound: {fileID: 8300000, guid: 1b668509c80f34b4db914c1a2455ebd2, type: 3}
   tokenSound: {fileID: 8300000, guid: 2d45d6c23bf7d445b8788fc35781d7ff, type: 3}
-  gemSound: {fileID: 8300000, guid: 65ddd148dc3cb4b37a6ede7b303cc662, type: 3}
-  keySound: {fileID: 8300000, guid: f5c873aba88b3485c8d87f01542c6bb4, type: 3}
+  gemSound: {fileID: 8300000, guid: 81c9b9dae9a8c4eb6bed6307f37cb0e2, type: 3}
+  keySound: {fileID: 8300000, guid: 81c9b9dae9a8c4eb6bed6307f37cb0e2, type: 3}
   doorLockedSound: {fileID: 8300000, guid: b6271fee0c6864157a449227440563a4, type: 3}
   doorOpeningSound: {fileID: 8300000, guid: 03e3114c880cf4aa3897ac1f3c18bc89, type: 3}
-  injuredSound: {fileID: 8300000, guid: 65ddd148dc3cb4b37a6ede7b303cc662, type: 3}
+  injuredSound: {fileID: 8300000, guid: b606f5ff670d3417f9bbb778c2564864, type: 3}
   musicVolume: 0
   sfxVolume: 0
 --- !u!4 &1717793350

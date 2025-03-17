@@ -9,6 +9,7 @@ public class PlayerData : MonoBehaviour, DataInterface
     public int health;
     public int level;
     public int isLevelStart;
+    public int isLevelEnd;
     public int isKeyCollected;
     
     public UnityEvent OnScoreChanged;
@@ -27,6 +28,7 @@ public class PlayerData : MonoBehaviour, DataInterface
         this.health = data.health;
         this.level = data.level;
         this.isLevelStart = data.isLevelStart;
+        this.isLevelEnd = data.isLevelEnd;
         this.isKeyCollected = data.isKeyCollected;
         OnScoreChanged.Invoke();
         OnHealthChanged.Invoke();
@@ -41,6 +43,7 @@ public class PlayerData : MonoBehaviour, DataInterface
         data.health = this.health;
         data.level = this.level;
         data.isLevelStart = this.isLevelStart;
+        data.isLevelEnd = this.isLevelEnd;
         data.isKeyCollected = this.isKeyCollected;
     }
 
@@ -48,6 +51,12 @@ public class PlayerData : MonoBehaviour, DataInterface
     public void LevelStarted()
     {
         isLevelStart = 0;
+    }
+
+    //Set isLevelStart to 1 (true)
+    public void LevelEnded()
+    {
+        isLevelEnd = 1;
     }
     
     //Add an amount to score

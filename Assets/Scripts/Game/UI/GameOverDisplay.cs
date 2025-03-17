@@ -7,7 +7,9 @@ using TMPro;
 public class GameOverDisplay : MonoBehaviour
 {
     public PlayerData playerData;
+    public TMP_Text messageText;
     public TMP_Text scoreText;
+    private bool isGameOver;
 
     private void Awake()
     {
@@ -31,15 +33,33 @@ public class GameOverDisplay : MonoBehaviour
     public void ShowGameOver()
     {
         gameObject.SetActive(true);
+        messageText.text = "Game Over";
         scoreText.text = $"Score: {playerData.score}";
+        isGameOver = true;
+    }
+
+    //To show level compeltet screen  
+    public void ShowLevelComplete()
+    {
+        gameObject.SetActive(true);
+        messageText.text = "Level Complete";
+        scoreText.text = $"Score: {playerData.score}";
+        isGameOver = false;
     }
 
     //For UI Menu button
     public void MenuButton()
     {
         Debug.Log("Continue button clicked"); //delete
-        DataManager.instance.ResetGame();
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
-        SceneManager.LoadScene("MainMenu");
+        if(isGameOver)
+        {
+            DataManager.instance.ResetGame();
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            Debug.Log("NEXT LEVEL FUNCTION HERE");
+        }
     }
 }

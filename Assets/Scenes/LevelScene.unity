@@ -2233,6 +2233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 0}
+  messageText: {fileID: 1168865234}
   scoreText: {fileID: 1413847172}
 --- !u!1001 &507455725
 PrefabInstance:
@@ -4405,7 +4406,7 @@ GameObject:
   - component: {fileID: 1168865235}
   - component: {fileID: 1168865234}
   m_Layer: 5
-  m_Name: Game Over (TMP)
+  m_Name: Message (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4427,8 +4428,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 221.12}
-  m_SizeDelta: {x: 842.3995, y: 209.9321}
+  m_AnchoredPosition: {x: 0, y: 232.47}
+  m_SizeDelta: {x: 1202.5244, y: 232.6427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1168865234
 MonoBehaviour:
@@ -4450,7 +4451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over
+  m_text: Level Compelte
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 601757f7b3fa44e0f910bd5dc1bb4198, type: 2}
   m_sharedMaterial: {fileID: -6920286982149685527, guid: 601757f7b3fa44e0f910bd5dc1bb4198, type: 2}

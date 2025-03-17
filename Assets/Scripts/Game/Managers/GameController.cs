@@ -42,8 +42,7 @@ public class GameController : MonoBehaviour
     //To show level complete screen
     public void NextLevel()
     {
-        // gameOverDisplay.ShowGameOver();
-        Debug.Log("NEXT LEVEL");
+        gameOverDisplay.ShowLevelComplete();
     }
 
     #region SAVE FIRST LAUNCH STATUS ON APPLICATION QUIT
