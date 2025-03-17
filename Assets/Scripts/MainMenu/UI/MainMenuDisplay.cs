@@ -28,7 +28,7 @@ public class MainMenuDisplay : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene ("LevelScene", LoadSceneMode.Single);
+            SceneManager.LoadScene ("Level1", LoadSceneMode.Single);
         }
     }
 
