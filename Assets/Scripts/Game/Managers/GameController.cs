@@ -7,7 +7,11 @@ public class GameController : MonoBehaviour
     public PlayerData playerData;
     public GameOverDisplay gameOverDisplay;
     public TimerDisplay timerDisplay;
+    public GemManager gemManager;
     private bool isFirstLaunch;
+    private float gemTimer = 0;
+    private float gemHiddenTime = 10f;
+    private float gemShowTime = 3f;
 
     private void Awake()
     {
@@ -30,6 +34,20 @@ public class GameController : MonoBehaviour
         if(playerData.health == 0)
         {
             GameOver();
+        }
+
+        if(gemManager.isCollected == false)
+        {
+            gemTimer += Time.deltaTime;
+            if(gemTimer > gemHiddenTime)
+            {
+                gemManager.ShowGem();
+            }
+            if(gemTimer > (gemHiddenTime+gemShowTime))
+            {
+                gemTimer = 0;
+                gemManager.HideGem();
+            }
         }
     }
 

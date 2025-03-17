@@ -3536,6 +3536,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8164197885728881759, guid: f31da5a668046421898da860f2db5419, type: 3}
   m_PrefabInstance: {fileID: 5073359805823357941}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &773742212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7377494459115543438, guid: f31da5a668046421898da860f2db5419, type: 3}
+  m_PrefabInstance: {fileID: 5073359805823357941}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5355eb5698443db997adf064112314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &809298403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3748,6 +3759,7 @@ MonoBehaviour:
   health: 0
   level: 0
   isLevelStart: 0
+  isLevelEnd: 0
   isKeyCollected: 0
   OnScoreChanged:
     m_PersistentCalls:
@@ -7009,6 +7021,7 @@ MonoBehaviour:
   playerData: {fileID: 809298413}
   gameOverDisplay: {fileID: 493014416}
   timerDisplay: {fileID: 564957052}
+  gemManager: {fileID: 773742212}
 --- !u!1 &1761764449
 GameObject:
   m_ObjectHideFlags: 0
@@ -8760,6 +8773,10 @@ PrefabInstance:
     - target: {fileID: 4171199115892109177, guid: f31da5a668046421898da860f2db5419, type: 3}
       propertyPath: m_Name
       value: Gem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377494459115543438, guid: f31da5a668046421898da860f2db5419, type: 3}
+      propertyPath: id
+      value: f631942c-ea49-4ee3-96b1-142c2d9cc81f
       objectReference: {fileID: 0}
     - target: {fileID: 7377494459115543438, guid: f31da5a668046421898da860f2db5419, type: 3}
       propertyPath: OnCollected.m_PersistentCalls.m_Calls.Array.size

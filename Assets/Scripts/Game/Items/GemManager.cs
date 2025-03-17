@@ -10,7 +10,7 @@ public class GemManager : MonoBehaviour, DataInterface
     
     private int itemPoints = 100; //points for each item collected
     [SerializeField] private string id;
-    private bool isCollected = false;
+    public bool isCollected = false;
     public UnityEvent OnGemCollected;
     private float startingPosY;
 
@@ -19,7 +19,7 @@ public class GemManager : MonoBehaviour, DataInterface
         //Find component on the item object
         body = gameObject.GetComponent<Rigidbody2D>();
 
-        //find player object's score controller
+        //find player object
         playerData = FindObjectOfType<PlayerData>();
     }
 
@@ -30,6 +30,8 @@ public class GemManager : MonoBehaviour, DataInterface
 
         //Set Y starting position
         startingPosY = body.position.y;
+
+        HideGem();
     }
 
     private void Update()
@@ -42,6 +44,16 @@ public class GemManager : MonoBehaviour, DataInterface
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void HideGem()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ShowGem()
+    {
+        gameObject.SetActive(true);
     }
 
     [ContextMenu("Generate guid for id")]
