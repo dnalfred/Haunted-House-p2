@@ -20,7 +20,7 @@ public class InfoDisplay : MonoBehaviour
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         if(menuController.isFirstLaunchPlaying)
         {
-            SceneManager.LoadScene ("LevelScene", LoadSceneMode.Single);
+            SceneManager.LoadScene ("Level01", LoadSceneMode.Single);
         }
         else if(menuController.isFirstLaunch)
         {

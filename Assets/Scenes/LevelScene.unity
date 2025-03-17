@@ -3748,6 +3748,7 @@ MonoBehaviour:
   health: 0
   level: 0
   isLevelStart: 0
+  isLevelEnd: 0
   isKeyCollected: 0
   OnScoreChanged:
     m_PersistentCalls:
@@ -5118,7 +5119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Grand Staircase
+  m_text: Default Scene
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 601757f7b3fa44e0f910bd5dc1bb4198, type: 2}
   m_sharedMaterial: {fileID: -6920286982149685527, guid: 601757f7b3fa44e0f910bd5dc1bb4198, type: 2}
@@ -7009,6 +7010,7 @@ MonoBehaviour:
   playerData: {fileID: 809298413}
   gameOverDisplay: {fileID: 493014416}
   timerDisplay: {fileID: 564957052}
+  gemManager: {fileID: 0}
 --- !u!1 &1761764449
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     // private bool isClimbing;
     private bool isFallingOff = false;
     private bool toReset = true;
+    private string currentScene;
 
     [SerializeField] private float walkSpeed = 5; //regular walking speed
     [SerializeField] private float jumpForce = 4; //regular jumping strength
@@ -33,6 +34,9 @@ public class PlayerMove : MonoBehaviour
 
         //Find playerData object with game data
         playerData = FindObjectOfType<PlayerData>();
+
+        //Save current scene
+        currentScene = SceneManager.GetActiveScene().name;
     }
 
     // Start is called before the first frame update
@@ -215,7 +219,7 @@ public class PlayerMove : MonoBehaviour
         Debug.Log("Player object destroyed at y = " + transform.position.y);
         if(toReset)
         {
-            SceneManager.LoadScene("LevelScene");
+            SceneManager.LoadScene(currentScene);
         }
     }
 
