@@ -35,19 +35,19 @@ public class MenuController : MonoBehaviour
         {
             isFirstLaunch = (status == "True");
         }
-        Debug.Log("Launch status loaded: "+isFirstLaunch); //delete
+        Debug.Log("Launch status loaded: "+isFirstLaunch); //for testing
     }
 
     public void SaveLaunchStatus()
     {
         PlayerPrefs.SetString("FirstLaunchStatus", isFirstLaunch.ToString());
-        Debug.Log("Launch status saved: "+isFirstLaunch); //delete
+        Debug.Log("Launch status saved: "+isFirstLaunch); //for testing
     }
 
     public void ResetFirstLaunch()
     {
         isFirstLaunch = true;
-        Debug.Log("Launch status reset"); //delete
+        Debug.Log("Launch status reset"); //for testing
         SaveLaunchStatus();
     }
 

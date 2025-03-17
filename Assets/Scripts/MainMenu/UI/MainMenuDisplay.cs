@@ -8,7 +8,6 @@ public class MainMenuDisplay : MonoBehaviour
 {
     private MenuController menuController;
     public InfoDisplay infoDisplay;
-    public ScoresDisplay scoresDisplay;
 
     public void Awake()
     {
@@ -18,7 +17,6 @@ public class MainMenuDisplay : MonoBehaviour
     //For Menu Play button
     public void PlayButton()
     {
-        Debug.Log("Play button clicked!"); //delete
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         if(menuController.isFirstLaunch)
         {
@@ -35,7 +33,6 @@ public class MainMenuDisplay : MonoBehaviour
     //For Menu Information button
     public void InfoButton()
     {
-        Debug.Log("Info button clicked!"); //delete
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         infoDisplay.ShowInfo();
     }
@@ -43,16 +40,13 @@ public class MainMenuDisplay : MonoBehaviour
     //For Menu High Scores button
     public void ScoresButton()
     {
-        Debug.Log("Scores button clicked!"); //delete
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
-        // scoresDisplay.ShowScores();
         SceneManager.LoadScene ("HighScores", LoadSceneMode.Single);
     }
 
     //For Menu Quit button
     public void QuitButton()
     {
-        Debug.Log("Quit button clicked!"); //delete
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         Application.Quit();
     }

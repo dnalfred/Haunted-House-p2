@@ -16,7 +16,6 @@ public class InfoDisplay : MonoBehaviour
     //For Menu Play button
     public void ContinueButton()
     {
-        Debug.Log("Continue clicked!"); //delete
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         if(menuController.isFirstLaunchPlaying)
         {
@@ -33,13 +32,13 @@ public class InfoDisplay : MonoBehaviour
         }
     }
 
-    //To hide how to play screen
+    //To hide Information screen
     public void HideInfo()
     {
         gameObject.SetActive(false);
     }
 
-    //To show how to play screen  
+    //To show Information screen  
     public void ShowInfo()
     {
         gameObject.SetActive(true);
