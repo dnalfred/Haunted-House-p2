@@ -6,13 +6,16 @@ public class DoorManager : MonoBehaviour
 {
     private Rigidbody2D body;
     private PlayerData playerData;
+    private GameController gameController;
     [SerializeField] private bool isFakeDoor;
     [SerializeField] private bool isLevelTrigger;
     private float doorOpeningSpeed = 1.5f;
 
     private void Awake()
     {
+        //Find playerData and gameController objects
         playerData = FindObjectOfType<PlayerData>();
+        gameController = FindObjectOfType<GameController>();
         
         //Find components on the door object
         body = gameObject.GetComponent<Rigidbody2D>();
@@ -52,21 +55,7 @@ public class DoorManager : MonoBehaviour
 
         if(collision.gameObject.tag == "Player" && isLevelTrigger)
         {
-            Debug.Log("Next level");
+            gameController.NextLevel();
         }
     }
-
-    // private void OnTriggerEnter2D(Collider2D collider)
-    // {
-    //     if(collider.gameObject.tag == "levelTrigger")
-    //     {
-    //         Debug.Log("Door destroyed");
-    //         Destroy(gameObject);
-    //     }
-
-    //     if(collider.gameObject.tag == "Player" && isLevelTrigger)
-    //     {
-    //         NextLevel();
-    //     }
-    // }
 }

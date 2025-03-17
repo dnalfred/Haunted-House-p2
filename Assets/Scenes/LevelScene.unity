@@ -8326,11 +8326,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3012187226045274265, guid: 9d279e06a93334b9dbcb0c52cb3c7984, type: 3}
       propertyPath: m_Size.x
-      value: 1.6154494
+      value: 1.8504505
       objectReference: {fileID: 0}
     - target: {fileID: 3012187226045274265, guid: 9d279e06a93334b9dbcb0c52cb3c7984, type: 3}
       propertyPath: m_Offset.x
-      value: -0.13774562
+      value: -0.25524616
       objectReference: {fileID: 0}
     - target: {fileID: 3012187226045274265, guid: 9d279e06a93334b9dbcb0c52cb3c7984, type: 3}
       propertyPath: m_IsTrigger
