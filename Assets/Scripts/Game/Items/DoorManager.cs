@@ -37,30 +37,36 @@ public class DoorManager : MonoBehaviour
         body.velocity = new Vector2(doorOpeningSpeed, body.velocity.y);
     }
 
-    private void NextLevel()
-    {
-        Debug.Log("Next level");
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player" && !isFakeDoor && !isLevelTrigger)
         {
             CheckDoor();
         }
-    }
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if(collider.gameObject.tag == "levelTrigger")
+        if(collision.gameObject.tag == "levelTrigger")
         {
             Debug.Log("Door destroyed");
             Destroy(gameObject);
         }
 
-        if(collider.gameObject.tag == "Player" && isLevelTrigger)
+        if(collision.gameObject.tag == "Player" && isLevelTrigger)
         {
-            NextLevel();
+            Debug.Log("Next level");
         }
     }
+
+    // private void OnTriggerEnter2D(Collider2D collider)
+    // {
+    //     if(collider.gameObject.tag == "levelTrigger")
+    //     {
+    //         Debug.Log("Door destroyed");
+    //         Destroy(gameObject);
+    //     }
+
+    //     if(collider.gameObject.tag == "Player" && isLevelTrigger)
+    //     {
+    //         NextLevel();
+    //     }
+    // }
 }
