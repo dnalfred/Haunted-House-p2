@@ -40,6 +40,8 @@ public class HighScoresData : MonoBehaviour
 
     private void Start()
     {
+        // AddHighscoreEntry("ZZZ", 999); //For testing
+
         //Display High Scores Table
         DisplayHighScores(highscoreEntryList);
     }
@@ -67,6 +69,7 @@ public class HighScoresData : MonoBehaviour
         SortScores(highscoreEntryList);
 
         //Save New High Scores
+        highscores = new HighscoresData {highscoreEntryList = highscoreEntryList};
         SaveHighScores();
     }
     #endregion
@@ -121,6 +124,10 @@ public class HighScoresData : MonoBehaviour
     private void AddHighscoreEntry(string newName, int newScore)
     {
         HighscoreEntry newEntry = new HighscoreEntry (newName, newScore);
+        highscores.highscoreEntryList.Add(newEntry);
+        SortScores(highscores.highscoreEntryList);
+        SaveHighScores();
+        DisplayHighScores(highscores.highscoreEntryList);
     }
 
     private void SortScores(List<HighscoreEntry> highscoreEntryList)
@@ -138,14 +145,22 @@ public class HighScoresData : MonoBehaviour
                     highscoreEntryList[j] = temporaryEntry;
                 }
             }
-        }        
+        }    
+        TrimList(highscoreEntryList);    
+    }
+
+    private void TrimList(List<HighscoreEntry> highscoreEntryList)
+    {
+        if(highscoreEntryList.Count>10)
+        {
+            highscoreEntryList.RemoveAt(10);
+        }
     }
     #endregion
 
     #region SAVE & LOAD
     private void SaveHighScores()
     {
-        highscores = new HighscoresData {highscoreEntryList = highscoreEntryList};
         string dataToSave = JsonUtility.ToJson(highscores);
         Debug.Log(dataToSave);
         try
