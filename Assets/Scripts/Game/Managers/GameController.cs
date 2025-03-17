@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     public GemManager gemManager;
     private bool isFirstLaunch;
     private float gemTimer = 0;
-    private float gemHiddenTime = 10f;
+    private float gemHiddenTime = 6;
     private float gemShowTime = 3f;
 
     private void Awake()
@@ -20,6 +20,11 @@ public class GameController : MonoBehaviour
 
         //Load game first launch status (to reset if necessary)
         LoadLaunchStatus();
+    }
+
+    private void Start()
+    {
+        SetHiddenTime();
     }
 
     private void Update()
@@ -47,8 +52,15 @@ public class GameController : MonoBehaviour
             {
                 gemTimer = 0;
                 gemManager.HideGem();
+                SetHiddenTime();
             }
         }
+    }
+
+    private void SetHiddenTime()
+    {
+        gemHiddenTime = Random.Range(6, 12);
+        Debug.Log("Gem Hidden Time: "+gemHiddenTime);
     }
 
     //To show game over screen
