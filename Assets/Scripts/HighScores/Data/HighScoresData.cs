@@ -51,16 +51,16 @@ public class HighScoresData : MonoBehaviour
         //Create new highscoreEntryList (for testing)
         highscoreEntryList = new List<HighscoreEntry>()
         {
-            new HighscoreEntry ("AAA", 1233),
-            new HighscoreEntry ("BBB", 455),
-            new HighscoreEntry ("CCC", 102),
-            new HighscoreEntry ("DDD", 783),
-            new HighscoreEntry ("EEE", 1045),
-            new HighscoreEntry ("FFF", 287),
-            new HighscoreEntry ("GGG", 65),
-            new HighscoreEntry ("HHH", 953),
-            new HighscoreEntry ("III", 627),
-            new HighscoreEntry ("JJJ", 1312)
+            new HighscoreEntry ("AAA", 190),
+            new HighscoreEntry ("BBB", 350),
+            new HighscoreEntry ("CCC", 90),
+            new HighscoreEntry ("DDD", 20),
+            new HighscoreEntry ("EEE", 1050),
+            new HighscoreEntry ("FFF", 290),
+            new HighscoreEntry ("GGG", 40),
+            new HighscoreEntry ("HHH", 110),
+            new HighscoreEntry ("III", 630),
+            new HighscoreEntry ("JJJ", 1250)
         };
 
         //Sort List

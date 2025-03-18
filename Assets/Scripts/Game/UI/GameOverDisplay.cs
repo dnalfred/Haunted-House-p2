@@ -77,8 +77,17 @@ public class GameOverDisplay : MonoBehaviour
     //For UI input field
     public void NameInput(string input)
     {
+        if(input == string.Empty)
+        {
+            return;
+        }
         inputText = input;
-        scoresData.AddHighscoreEntry(inputText, playerData.score);
+        AddHighScore(inputText);
+    }
+
+    private void AddHighScore(string input)
+    {
+        scoresData.AddHighscoreEntry(input, playerData.score);
         DataManager.instance.ResetGame();
         SceneManager.LoadScene("HighScores");
     }
@@ -89,9 +98,7 @@ public class GameOverDisplay : MonoBehaviour
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         if(isNewHighScore)
         {
-            scoresData.AddHighscoreEntry(inputText, playerData.score);
-            DataManager.instance.ResetGame();
-            SceneManager.LoadScene("HighScores");
+            AddHighScore(inputText);
         }
         else if(isGameOver)
         {
