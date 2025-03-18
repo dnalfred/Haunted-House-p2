@@ -73,13 +73,12 @@ public class HighScoresData : MonoBehaviour
     #endregion
 
     #region ADD & SORT
-    private void AddHighscoreEntry(string newName, int newScore)
+    public void AddHighscoreEntry(string newName, int newScore)
     {
         HighscoreEntry newEntry = new HighscoreEntry (newName, newScore);
         highscores.highscoreEntryList.Add(newEntry);
         SortScores(highscores.highscoreEntryList);
         SaveHighScores();
-        // DisplayHighScores(highscores.highscoreEntryList);
     }
 
     private void SortScores(List<HighscoreEntry> highscoreEntryList)

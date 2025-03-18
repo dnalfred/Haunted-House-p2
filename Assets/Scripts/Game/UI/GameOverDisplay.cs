@@ -15,6 +15,7 @@ public class GameOverDisplay : MonoBehaviour
     public GameObject inputBackground;
     private bool isGameOver;
     private bool isNewHighScore;
+    public string inputText; 
 
     private void Awake()
     {
@@ -23,12 +24,6 @@ public class GameOverDisplay : MonoBehaviour
 
         //Find playerData object
         playerData = FindObjectOfType<PlayerData>();
-    }
-
-    private void Start()
-    {
-        //Hide game over screen when game starts
-        HideGameOver();
     }
 
     //To hide game over screen
@@ -45,8 +40,7 @@ public class GameOverDisplay : MonoBehaviour
         scoreText.text = $"Score: {playerData.score}";
         if(playerData.score > scoresData.highscores.highscoreEntryList[9].score)
         {
-            msgBackground.SetActive(true);
-            inputBackground.SetActive(true);
+            ShowNewHighScore();
             continueText.text = "Add Score";
             isNewHighScore = true;
         }
@@ -55,6 +49,18 @@ public class GameOverDisplay : MonoBehaviour
             continueText.text = "Continue";
         }
         isGameOver = true;
+    }
+
+    public void ShowNewHighScore()
+    {
+        msgBackground.SetActive(true);
+        inputBackground.SetActive(true);
+    }
+
+    public void HideNewHighScore()
+    {
+        msgBackground.SetActive(false);
+        inputBackground.SetActive(false);
     }
 
     //To show level compeltet screen  
@@ -68,15 +74,26 @@ public class GameOverDisplay : MonoBehaviour
         isGameOver = false;
     }
 
+    //For UI input field
+    public void NameInput(string input)
+    {
+        inputText = input;
+        scoresData.AddHighscoreEntry(inputText, playerData.score);
+        DataManager.instance.ResetGame();
+        SceneManager.LoadScene("HighScores");
+    }
+
     //For UI Menu button
     public void MenuButton()
     {
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         if(isNewHighScore)
         {
-            Debug.Log("NEW HIGH SCORE FUNCTION HERE");
+            scoresData.AddHighscoreEntry(inputText, playerData.score);
+            DataManager.instance.ResetGame();
+            SceneManager.LoadScene("HighScores");
         }
-        if(isGameOver)
+        else if(isGameOver)
         {
             DataManager.instance.ResetGame();
             SceneManager.LoadScene("MainMenu");

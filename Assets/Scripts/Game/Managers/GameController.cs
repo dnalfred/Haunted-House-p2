@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         SetHiddenTime();
+        gameOverDisplay.HideGameOver();
+        gameOverDisplay.HideNewHighScore();
     }
 
     private void Update()
