@@ -10,8 +10,11 @@ public class GameOverDisplay : MonoBehaviour
     public PlayerData playerData;
     public TMP_Text messageText;
     public TMP_Text scoreText;
-    public TMP_Text newHighScoreText;
+    public TMP_Text continueText;
+    public GameObject msgBackground;
+    public GameObject inputBackground;
     private bool isGameOver;
+    private bool isNewHighScore;
 
     private void Awake()
     {
@@ -42,7 +45,14 @@ public class GameOverDisplay : MonoBehaviour
         scoreText.text = $"Score: {playerData.score}";
         if(playerData.score > scoresData.highscores.highscoreEntryList[9].score)
         {
-            newHighScoreText.enabled = true;
+            msgBackground.SetActive(true);
+            inputBackground.SetActive(true);
+            continueText.text = "Add Score";
+            isNewHighScore = true;
+        }
+        else
+        {
+            continueText.text = "Continue";
         }
         isGameOver = true;
     }
@@ -53,14 +63,19 @@ public class GameOverDisplay : MonoBehaviour
         gameObject.SetActive(true);
         messageText.text = "Level Complete";
         scoreText.text = $"Score: {playerData.score}";
+        continueText.text = "Continue";
+        isNewHighScore = false;
         isGameOver = false;
     }
 
     //For UI Menu button
     public void MenuButton()
     {
-        Debug.Log("Continue button clicked"); //delete
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
+        if(isNewHighScore)
+        {
+            Debug.Log("NEW HIGH SCORE FUNCTION HERE");
+        }
         if(isGameOver)
         {
             DataManager.instance.ResetGame();
