@@ -148,11 +148,11 @@ public class EnemyMove : MonoBehaviour
     //Return emeny to starting height
     private void CheckHeight()
     {
-        if(player.transform.position.y < startHeight)
+        if(player.transform.position.y > startHeight)
         {
             flySpeedY = flySpeed;
         }
-        else if(player.transform.position.y > startHeight)
+        else if(player.transform.position.y < startHeight)
         {
             flySpeedY = -flySpeed;
         }

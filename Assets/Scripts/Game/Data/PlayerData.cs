@@ -92,7 +92,7 @@ public class PlayerData : MonoBehaviour, DataInterface
     public void AddLevel()
     {
         level += 1;
-        OnScoreChanged.Invoke();
+        OnLevelChanged.Invoke();
     }
     
     public void KeyCollected()

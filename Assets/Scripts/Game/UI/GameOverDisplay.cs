@@ -13,8 +13,8 @@ public class GameOverDisplay : MonoBehaviour
     public TMP_Text continueText;
     public GameObject msgBackground;
     public GameObject inputBackground;
-    private bool isGameOver;
-    private bool isNewHighScore;
+    private bool isGameOver = false;
+    private bool isNewHighScore = false;
     public string inputText; 
 
     private void Awake()
@@ -48,7 +48,6 @@ public class GameOverDisplay : MonoBehaviour
         {
             continueText.text = "Continue";
         }
-        isGameOver = true;
     }
 
     public void ShowNewHighScore()
@@ -107,7 +106,9 @@ public class GameOverDisplay : MonoBehaviour
         }
         else
         {
-            Debug.Log("NEXT LEVEL FUNCTION HERE");
+            playerData.AddLevel();
+            int index = SceneManager.GetActiveScene().buildIndex + 1;
+            SceneManager.LoadScene(index);
         }
     }
 }

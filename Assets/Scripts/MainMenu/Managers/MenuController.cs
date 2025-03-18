@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    // private HowToDisplay howToDisplay;
     public bool isFirstLaunch;
     public bool isFirstLaunchPlaying = false;
 

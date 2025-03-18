@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     private float gemTimer = 0;
     private float gemHiddenTime = 6;
     private float gemShowTime = 3f;
+    private int finalLevelNo = 2;
 
     private void Awake()
     {
@@ -24,9 +25,14 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        //Set gemHiddenTime value
         SetHiddenTime();
+
+        //Reset Game Over and New High Score Displays
         gameOverDisplay.HideGameOver();
         gameOverDisplay.HideNewHighScore();
+
+        Debug.Log("Level: "+playerData.level); //For Testing
     }
 
     private void Update()
@@ -62,7 +68,7 @@ public class GameController : MonoBehaviour
     private void SetHiddenTime()
     {
         gemHiddenTime = Random.Range(6, 12);
-        Debug.Log("Gem Hidden Time: "+gemHiddenTime);
+        Debug.Log("Gem Hidden Time: "+gemHiddenTime); //For testing
     }
 
     //To show game over screen
@@ -74,9 +80,16 @@ public class GameController : MonoBehaviour
     //To show level complete screen
     public void NextLevel()
     {
-        gameOverDisplay.ShowLevelComplete();
+        if(playerData.level == finalLevelNo)
+        {
+            gameOverDisplay.ShowGameOver();
+        }
+        else
+        {
+            gameOverDisplay.ShowLevelComplete();
+        }
     }
-
+    
     #region SAVE FIRST LAUNCH STATUS ON APPLICATION QUIT
     private void LoadLaunchStatus()
     {
@@ -89,19 +102,16 @@ public class GameController : MonoBehaviour
         {
             isFirstLaunch = (status == "True");
         }
-        Debug.Log("Launch status loaded: "+isFirstLaunch); //delete
     }
 
     private void SaveLaunchStatus()
     {
         PlayerPrefs.SetString("FirstLaunchStatus", isFirstLaunch.ToString());
-        Debug.Log("Launch status saved: "+isFirstLaunch); //delete
     }
 
     private void ResetFirstLaunch()
     {
         isFirstLaunch = true;
-        Debug.Log("Launch status reset"); //delete
         SaveLaunchStatus();
     }
 

@@ -26,7 +26,7 @@ public class MainMenuDisplay : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene ("Level01", LoadSceneMode.Single);
+            SceneManager.LoadScene ("Level1", LoadSceneMode.Single);
         }
     }
 

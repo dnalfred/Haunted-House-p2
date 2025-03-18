@@ -51,7 +51,6 @@ public class DoorManager : MonoBehaviour
         {
             Debug.Log("Door destroyed");
             Destroy(gameObject);
-            gameController.NextLevel();
         }
 
         if(collision.gameObject.tag == "Player")
