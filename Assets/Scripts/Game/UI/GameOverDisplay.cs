@@ -6,13 +6,18 @@ using TMPro;
 
 public class GameOverDisplay : MonoBehaviour
 {
+    public HighScoresData scoresData;
     public PlayerData playerData;
     public TMP_Text messageText;
     public TMP_Text scoreText;
+    public TMP_Text newHighScoreText;
     private bool isGameOver;
 
     private void Awake()
     {
+        //Find scoresData object
+        scoresData = FindObjectOfType<HighScoresData>();
+
         //Find playerData object
         playerData = FindObjectOfType<PlayerData>();
     }
@@ -35,6 +40,10 @@ public class GameOverDisplay : MonoBehaviour
         gameObject.SetActive(true);
         messageText.text = "Game Over";
         scoreText.text = $"Score: {playerData.score}";
+        if(playerData.score > scoresData.highscores.highscoreEntryList[9].score)
+        {
+            newHighScoreText.enabled = true;
+        }
         isGameOver = true;
     }
 
