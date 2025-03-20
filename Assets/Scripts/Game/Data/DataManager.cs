@@ -25,13 +25,13 @@ public class DataManager : MonoBehaviour
         this.saveSystem = new SaveSystemJson(useEncryption);
         this.dataObjects = FinAllDataObjects();
         LoadGame();
-        Debug.Log("Game Data: "+this.gameData);
     }
 
     public void NewGame()
     {
         this.gameData = new GameData();
         Debug.Log("All game data reset");
+        Debug.Log("[Game Data] "+"Score: "+this.gameData.score + ", Health: "+this.gameData.health + ", Level: "+this.gameData.level+ ", Booleans: "+this.gameData.isLevelStart+", "+this.gameData.isLevelEnd+", "+this.gameData.isKeyCollected);
     }
 
     public void LoadGame()
@@ -46,6 +46,7 @@ public class DataManager : MonoBehaviour
         else
         {
             Debug.Log("Game data loaded");
+            Debug.Log("[Game Data] "+"Score: "+this.gameData.score + ", Health: "+this.gameData.health + ", Level: "+this.gameData.level+ ", Booleans: "+this.gameData.isLevelStart+", "+this.gameData.isLevelEnd+", "+this.gameData.isKeyCollected);
         }
 
         //Pass loaded data to other scripts

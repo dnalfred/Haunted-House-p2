@@ -38,11 +38,12 @@ public class GameOverDisplay : MonoBehaviour
         gameObject.SetActive(true);
         messageText.text = "Game Over";
         scoreText.text = $"Score: {playerData.score}";
+        isGameOver = true;
         if(playerData.score > scoresData.highscores.highscoreEntryList[9].score)
         {
-            ShowNewHighScore();
-            continueText.text = "Add Score";
             isNewHighScore = true;
+            ShowNewHighScore();
+            continueText.text = "Update";
         }
         else
         {
@@ -62,7 +63,7 @@ public class GameOverDisplay : MonoBehaviour
         inputBackground.SetActive(false);
     }
 
-    //To show level compeltet screen  
+    //To show level complete screen  
     public void ShowLevelComplete()
     {
         gameObject.SetActive(true);
