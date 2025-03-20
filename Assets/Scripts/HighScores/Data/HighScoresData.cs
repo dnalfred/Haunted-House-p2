@@ -11,7 +11,6 @@ public class HighScoresData : MonoBehaviour
     public HighscoresData highscores;
     public List<HighscoreEntry> highscoreEntryList;
     private List<Transform> highscoreEntryTransformList;
-    public int lowestHighScore;
 
     private readonly string encryptionCode = "uluicedabvanrad"; //contains 5 uncommon three-letter words
 
@@ -41,15 +40,6 @@ public class HighScoresData : MonoBehaviour
 
         //Create new highscore list (for testing)
         // CreateNewHighScoreList();
-
-        if(highscoreEntryList.Count == 0)
-        {
-            lowestHighScore = 0;
-        }
-        else
-        {
-            lowestHighScore = highscoreEntryList[highscoreEntryList.Count-1].score;
-        }
     }
 
     private void Start()

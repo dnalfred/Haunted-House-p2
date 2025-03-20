@@ -42,7 +42,7 @@ public class GameOverDisplay : MonoBehaviour
         messageText.text = "Game Over";
         scoreText.text = $"Score: {playerData.score}";
         isGameOver = true;
-        if(scoresData.highscores.highscoreEntryList.Count < 10 || playerData.score > scoresData.lowestHighScore)
+        if(scoresData.highscores.highscoreEntryList.Count < 10 || playerData.score > scoresData.highscores.highscoreEntryList[9].score)
         {
             isNewHighScore = true;
             ShowNewHighScore();
