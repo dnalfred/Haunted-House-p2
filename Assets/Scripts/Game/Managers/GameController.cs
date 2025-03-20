@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour
     private void SetHiddenTime()
     {
         gemHiddenTime = Random.Range(6, 12);
-        Debug.Log("Gem Hidden Time: "+gemHiddenTime); //For testing
+        // Debug.Log("Gem Hidden Time: "+gemHiddenTime); //For testing
     }
 
     //To show game over screen

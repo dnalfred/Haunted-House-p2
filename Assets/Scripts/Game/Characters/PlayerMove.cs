@@ -15,8 +15,7 @@ public class PlayerMove : MonoBehaviour
     private bool isGrounded;
     // private bool isClimbing;
     private bool isFallingOff = false;
-    private bool toReset = true;
-    private string currentScene;
+    private bool toResetScene = true;
 
     [SerializeField] private float walkSpeed = 5; //regular walking speed
     [SerializeField] private float jumpForce = 4; //regular jumping strength
@@ -24,7 +23,6 @@ public class PlayerMove : MonoBehaviour
     private float scaleFactor = 0.5f; //used to resize character model
 
     #region AWAKE, START & UPDATES
-
     // Awake is called when the script is loaded
     private void Awake()
     {
@@ -34,9 +32,6 @@ public class PlayerMove : MonoBehaviour
 
         //Find playerData object with game data
         playerData = FindObjectOfType<PlayerData>();
-
-        //Save current scene
-        currentScene = SceneManager.GetActiveScene().name;
     }
 
     // Start is called before the first frame update
@@ -58,7 +53,7 @@ public class PlayerMove : MonoBehaviour
             isFallingOff = true;
             if(playerData.isDead)
             {
-                toReset = false;
+                toResetScene = false;
             }
             SoundManager.instance.PlaySoundFXClip(SoundManager.instance.injuredSound, transform);
             FallOffScreen();
@@ -84,6 +79,7 @@ public class PlayerMove : MonoBehaviour
         if(playerData.isLevelEnd == 1)
         {
             animator.SetBool("Walking", false);
+            toResetScene = false;
         }
     }
 
@@ -122,7 +118,6 @@ public class PlayerMove : MonoBehaviour
     #endregion
 
     #region SET PLAYER DIRECTION
-
     //function to set the direction the player's character model is facing
     private void SetDirection(float input)
     {
@@ -135,11 +130,9 @@ public class PlayerMove : MonoBehaviour
             transform.localScale = new Vector3(-scaleFactor, scaleFactor, scaleFactor);
         }
     }
-
     #endregion
 
     #region MOVEMENT
-
     private void Walk(float input)
     {
         body.velocity = new Vector2(input*walkSpeed, body.velocity.y);
@@ -162,11 +155,9 @@ public class PlayerMove : MonoBehaviour
         body.velocity = new Vector2(0, jumpForce*2);
         body.GetComponent<Collider2D>().enabled = false;
     }
-
     #endregion
 
     #region COLLISION DETECTION
-
     //function to detect collisions with ground objects
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -212,19 +203,16 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
     #endregion
 
     #region WHEN OFF SCREEN
-
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
-        if(toReset)
+        if(toResetScene)
         {
-            SceneManager.LoadScene(currentScene);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-
     #endregion
 }

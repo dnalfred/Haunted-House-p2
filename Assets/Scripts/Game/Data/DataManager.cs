@@ -30,7 +30,7 @@ public class DataManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
-        Debug.Log("All game data reset");
+        Debug.Log("New game data created");
         Debug.Log("[Game Data] "+"Score: "+this.gameData.score + ", Health: "+this.gameData.health + ", Level: "+this.gameData.level+ ", Booleans: "+this.gameData.isLevelStart+", "+this.gameData.isLevelEnd+", "+this.gameData.isKeyCollected);
     }
 
@@ -40,7 +40,7 @@ public class DataManager : MonoBehaviour
         this.gameData = saveSystem.LoadPlayerData();
         if (this.gameData == null)
         {
-            Debug.Log("Existing saved game data not found");
+            Debug.Log("Existing game data not found: To create new");
             NewGame();
         }
         else
@@ -66,11 +66,15 @@ public class DataManager : MonoBehaviour
 
         //Save game data to file
         saveSystem.SavePlayerData(gameData);
+        Debug.Log("Game data saved");
+        Debug.Log("[Game Data] "+"Score: "+this.gameData.score + ", Health: "+this.gameData.health + ", Level: "+this.gameData.level+ ", Booleans: "+this.gameData.isLevelStart+", "+this.gameData.isLevelEnd+", "+this.gameData.isKeyCollected);
+
     }
 
     //Reset all data for a new game
     public void ResetGame()
     {
+        Debug.Log("Game data reset");
         NewGame();
         saveSystem.SavePlayerData(gameData);
     }
