@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; //ONLY REQUIRED FOR BUTTON
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -8,9 +9,11 @@ public class GameOverDisplay : MonoBehaviour
 {
     public HighScoresData scoresData;
     public PlayerData playerData;
+
     public TMP_Text messageText;
     public TMP_Text scoreText;
     public TMP_Text continueText;
+    public Button gameOverButton;
     public GameObject msgBackground;
     public GameObject inputBackground;
     private bool isGameOver = false;
@@ -32,7 +35,7 @@ public class GameOverDisplay : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    //To show game over screen  
+    //To show game over screen (with or without new highscore) 
     public void ShowGameOver()
     {
         gameObject.SetActive(true);
@@ -74,6 +77,14 @@ public class GameOverDisplay : MonoBehaviour
         isGameOver = false;
     }
 
+    //For UI input or button to trigger addition of new high score
+    private void AddHighScore(string input)
+    {
+        scoresData.AddHighscoreEntry(input, playerData.score);
+        DataManager.instance.ResetGame();
+        SceneManager.LoadScene("HighScores");
+    }
+
     //For UI input field
     public void NameInput(string input)
     {
@@ -82,22 +93,19 @@ public class GameOverDisplay : MonoBehaviour
             return;
         }
         inputText = input;
-        AddHighScore(inputText);
+        AddHighScore(inputText); //If player presses enter instead of clicking the button
     }
 
-    private void AddHighScore(string input)
-    {
-        scoresData.AddHighscoreEntry(input, playerData.score);
-        DataManager.instance.ResetGame();
-        SceneManager.LoadScene("HighScores");
-    }
-
-    //For UI Menu button
+    //For UI button
     public void MenuButton()
     {
         SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         if(isNewHighScore)
         {
+            if(inputText == string.Empty)
+            {
+                return;
+            }
             AddHighScore(inputText);
         }
         else if(isGameOver)
