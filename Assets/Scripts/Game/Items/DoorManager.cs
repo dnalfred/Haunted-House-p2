@@ -53,7 +53,7 @@ public class DoorManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && isLevelTrigger)
         {
             playerData.LevelEnded();
             gameController.NextLevel();
