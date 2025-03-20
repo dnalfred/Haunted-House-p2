@@ -68,7 +68,7 @@ public class PlayerMove : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
 
         //After level starts
-        if(playerData.isLevelStart == 0)
+        if(playerData.isLevelStart == 0 && playerData.isLevelEnd == 0)
         {
             //Set parameters for animation
             animator.SetBool("Walking", horizontalInput != 0);
@@ -80,6 +80,11 @@ public class PlayerMove : MonoBehaviour
                 SetDirection(horizontalInput);
             }
         }
+
+        if(playerData.isLevelEnd == 1)
+        {
+            animator.SetBool("Walking", false);
+        }
     }
 
     private void FixedUpdate()
@@ -88,8 +93,8 @@ public class PlayerMove : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        //After level starts
-        if(playerData.isLevelStart == 0)
+        //After level starts and before ends
+        if(playerData.isLevelStart == 0 && playerData.isLevelEnd == 0)
         {
             //Trigger walking
             if(onGround || onLadder)
@@ -114,7 +119,6 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
     #endregion
 
     #region SET PLAYER DIRECTION
