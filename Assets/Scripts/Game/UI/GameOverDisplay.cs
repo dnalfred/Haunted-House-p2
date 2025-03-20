@@ -42,7 +42,7 @@ public class GameOverDisplay : MonoBehaviour
         messageText.text = "Game Over";
         scoreText.text = $"Score: {playerData.score}";
         isGameOver = true;
-        if(playerData.score > scoresData.highscores.highscoreEntryList[9].score)
+        if(scoresData.highscores.highscoreEntryList.Count < 10 || playerData.score > scoresData.lowestHighScore)
         {
             isNewHighScore = true;
             ShowNewHighScore();
@@ -54,12 +54,14 @@ public class GameOverDisplay : MonoBehaviour
         }
     }
 
+    //To show new highscore message and input field
     public void ShowNewHighScore()
     {
         msgBackground.SetActive(true);
         inputBackground.SetActive(true);
     }
 
+    //To hide new highscore message and input field
     public void HideNewHighScore()
     {
         msgBackground.SetActive(false);

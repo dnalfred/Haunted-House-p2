@@ -2366,6 +2366,7 @@ MonoBehaviour:
   messageText: {fileID: 1168865234}
   scoreText: {fileID: 1413847172}
   continueText: {fileID: 172658077}
+  gameOverButton: {fileID: 1571392210}
   msgBackground: {fileID: 1625212352}
   inputBackground: {fileID: 196222675}
   inputText: 

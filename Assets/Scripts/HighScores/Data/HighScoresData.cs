@@ -11,6 +11,7 @@ public class HighScoresData : MonoBehaviour
     public HighscoresData highscores;
     public List<HighscoreEntry> highscoreEntryList;
     private List<Transform> highscoreEntryTransformList;
+    public int lowestHighScore;
 
     private readonly string encryptionCode = "uluicedabvanrad"; //contains 5 uncommon three-letter words
 
@@ -35,8 +36,20 @@ public class HighScoresData : MonoBehaviour
         //Load saved highscore data
         LoadHighScores();
 
+        //Reset high scores (for initial setup)
+        // ResetHighScores();
+
         //Create new highscore list (for testing)
         // CreateNewHighScoreList();
+
+        if(highscoreEntryList.Count == 0)
+        {
+            lowestHighScore = 0;
+        }
+        else
+        {
+            lowestHighScore = highscoreEntryList[highscoreEntryList.Count-1].score;
+        }
     }
 
     private void Start()
@@ -45,10 +58,10 @@ public class HighScoresData : MonoBehaviour
     }
     #endregion
 
-    #region CREATE NEW LIST
+    #region CREATE NEW HIGHSCORE LIST
+    //Create new highscoreEntryList (for testing)
     private void CreateNewHighScoreList()
     {
-        //Create new highscoreEntryList (for testing)
         highscoreEntryList = new List<HighscoreEntry>()
         {
             new HighscoreEntry ("AAA", 190),
@@ -67,6 +80,14 @@ public class HighScoresData : MonoBehaviour
         SortHighScores(highscoreEntryList);
 
         //Save New High Scores
+        highscores = new HighscoresData {highscoreEntryList = highscoreEntryList};
+        SaveHighScores();
+    }
+
+    //Create new empty highscore list (for initial setup)
+    private void ResetHighScores()
+    {
+        highscoreEntryList = new List<HighscoreEntry>();
         highscores = new HighscoresData {highscoreEntryList = highscoreEntryList};
         SaveHighScores();
     }
