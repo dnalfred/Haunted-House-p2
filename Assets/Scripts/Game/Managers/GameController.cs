@@ -78,7 +78,7 @@ public class GameController : MonoBehaviour
     //To show level complete screen
     public void NextLevel()
     {
-        if(playerData.level == finalLevelNo)
+        if(playerData.level > finalLevelNo)
         {
             gameOverDisplay.ShowGameOver();
         }

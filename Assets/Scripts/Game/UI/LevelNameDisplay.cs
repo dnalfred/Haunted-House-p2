@@ -16,6 +16,9 @@ public class LevelNameDisplay : MonoBehaviour
 
     public void UpdateLevelName(PlayerData playerData)
     {
-        levelNameText.text = levelNames[playerData.level-1];
+        if(playerData.isLevelStart == 1)
+        {
+            levelNameText.text = levelNames[playerData.level-1];
+        }
     }
 }

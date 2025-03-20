@@ -79,13 +79,15 @@ public class DataManager : MonoBehaviour
         saveSystem.SavePlayerData(gameData);
     }
 
-    public void NextLevel()
+    //Reset selected data for next level
+    public void SetNextLevel()
     {
         this.gameData.isLevelStart = 1;
         this.gameData.isLevelEnd = 0;
         this.gameData.isKeyCollected = 0;
         gameData.tokensCollected = new SerializableDictionary<string, bool>();
         gameData.itemsCollected = new SerializableDictionary<string, bool>();
+        saveSystem.SavePlayerData(gameData);
     }
 
     //Resets game data on application quit

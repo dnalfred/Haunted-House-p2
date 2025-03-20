@@ -117,9 +117,8 @@ public class GameOverDisplay : MonoBehaviour
         }
         else
         {
-            playerData.AddLevel();
-            int index = SceneManager.GetActiveScene().buildIndex + 1;
-            SceneManager.LoadScene(index);
+            DataManager.instance.SetNextLevel();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
