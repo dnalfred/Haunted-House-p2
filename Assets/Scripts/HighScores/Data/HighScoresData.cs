@@ -64,7 +64,7 @@ public class HighScoresData : MonoBehaviour
         };
 
         //Sort List
-        SortScores(highscoreEntryList);
+        SortHighScores(highscoreEntryList);
 
         //Save New High Scores
         highscores = new HighscoresData {highscoreEntryList = highscoreEntryList};
@@ -72,16 +72,16 @@ public class HighScoresData : MonoBehaviour
     }
     #endregion
 
-    #region ADD & SORT
+    #region ADD & SORT HIGHSCORES
     public void AddHighscoreEntry(string newName, int newScore)
     {
         HighscoreEntry newEntry = new HighscoreEntry (newName, newScore);
         highscores.highscoreEntryList.Add(newEntry);
-        SortScores(highscores.highscoreEntryList);
+        SortHighScores(highscores.highscoreEntryList);
         SaveHighScores();
     }
 
-    private void SortScores(List<HighscoreEntry> highscoreEntryList)
+    private void SortHighScores(List<HighscoreEntry> highscoreEntryList)
     {
         for (int i=0; i<highscoreEntryList.Count; i++)
         {
@@ -96,12 +96,8 @@ public class HighScoresData : MonoBehaviour
                     highscoreEntryList[j] = temporaryEntry;
                 }
             }
-        }    
-        TrimList(highscoreEntryList);    
-    }
-
-    private void TrimList(List<HighscoreEntry> highscoreEntryList)
-    {
+        }
+        //Remove eleventh high score list item (if a new item has been added)
         if(highscoreEntryList.Count>10)
         {
             highscoreEntryList.RemoveAt(10);
@@ -113,7 +109,6 @@ public class HighScoresData : MonoBehaviour
     private void SaveHighScores()
     {
         string dataToSave = JsonUtility.ToJson(highscores);
-        Debug.Log(dataToSave);
         try
         {
             FileStream stream = new FileStream(FilePath(), FileMode.Create);
@@ -148,7 +143,6 @@ public class HighScoresData : MonoBehaviour
                     }
                 }
                 dataToLoad = EncryptDecrypt(dataToLoad);
-                Debug.Log(dataToLoad);
                 highscores = JsonUtility.FromJson<HighscoresData>(dataToLoad);
                 highscoreEntryList = highscores.highscoreEntryList;
             }

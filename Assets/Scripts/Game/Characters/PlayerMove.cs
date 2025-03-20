@@ -216,7 +216,6 @@ public class PlayerMove : MonoBehaviour
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
-        Debug.Log("Player object destroyed at y = " + transform.position.y);
         if(toReset)
         {
             SceneManager.LoadScene(currentScene);

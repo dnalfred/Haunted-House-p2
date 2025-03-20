@@ -25,12 +25,13 @@ public class DataManager : MonoBehaviour
         this.saveSystem = new SaveSystemJson(useEncryption);
         this.dataObjects = FinAllDataObjects();
         LoadGame();
+        Debug.Log("Game Data: "+this.gameData);
     }
 
     public void NewGame()
     {
         this.gameData = new GameData();
-        Debug.Log("New data created");
+        Debug.Log("All game data reset");
     }
 
     public void LoadGame()
@@ -39,8 +40,12 @@ public class DataManager : MonoBehaviour
         this.gameData = saveSystem.LoadPlayerData();
         if (this.gameData == null)
         {
-            Debug.Log("Existing saved data not found");
+            Debug.Log("Existing saved game data not found");
             NewGame();
+        }
+        else
+        {
+            Debug.Log("Game data loaded");
         }
 
         //Pass loaded data to other scripts
@@ -67,6 +72,15 @@ public class DataManager : MonoBehaviour
     {
         NewGame();
         saveSystem.SavePlayerData(gameData);
+    }
+
+    public void NextLevel()
+    {
+        this.gameData.isLevelStart = 1;
+        this.gameData.isLevelEnd = 0;
+        this.gameData.isKeyCollected = 0;
+        gameData.tokensCollected = new SerializableDictionary<string, bool>();
+        gameData.itemsCollected = new SerializableDictionary<string, bool>();
     }
 
     //Resets game data on application quit

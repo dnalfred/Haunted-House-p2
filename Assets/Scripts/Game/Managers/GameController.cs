@@ -31,8 +31,6 @@ public class GameController : MonoBehaviour
         //Reset Game Over and New High Score Displays
         gameOverDisplay.HideGameOver();
         gameOverDisplay.HideNewHighScore();
-
-        Debug.Log("Level: "+playerData.level); //For Testing
     }
 
     private void Update()
