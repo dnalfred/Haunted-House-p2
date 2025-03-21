@@ -223,6 +223,15 @@ public class EnemyMove : MonoBehaviour
             //Set hitWall value
             hitWall = true;
         }
+
+        if(collision.gameObject.tag == "ground")
+        {
+            if(body.velocity.x == 0)
+            {
+                //Set hitWall value
+                hitWall = true;
+            }
+        }
     }
     #endregion
 }
