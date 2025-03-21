@@ -17,10 +17,11 @@ public class EnemyMove : MonoBehaviour
     private float scaleFactor = 1.2f; //used to resize character model
     private bool isTurning = false;
     private bool isHunting = false;
+    private bool stoppedHunting = true;
     private float startHeight;
 
-    [SerializeField] private float leftBoundary = 8;
-    [SerializeField] private float rightBoundary = -8;
+    [SerializeField] private float leftBoundary = 2;
+    [SerializeField] private float rightBoundary = -2;
     private float minPauseTime = 0;
     private float maxPauseTime = 2;
     private float pauseTime;
@@ -79,6 +80,11 @@ public class EnemyMove : MonoBehaviour
         {
             HuntPlayer();
         }
+
+        if(stoppedHunting)
+        {
+            CheckHeight();
+        }
     }
     #endregion
 
@@ -123,6 +129,7 @@ public class EnemyMove : MonoBehaviour
     //Move enemy towards player object
     private void HuntPlayer()
     {
+        stoppedHunting = false;
         float playerX = player.transform.position.x; 
         float playerY = player.transform.position.y;
         float enemyX = body.transform.position.x;
@@ -148,17 +155,18 @@ public class EnemyMove : MonoBehaviour
     //Return emeny to starting height
     private void CheckHeight()
     {
-        if(player.transform.position.y > startHeight)
-        {
-            flySpeedY = flySpeed;
-        }
-        else if(player.transform.position.y < startHeight)
+        if(transform.position.y > startHeight)
         {
             flySpeedY = -flySpeed;
+        }
+        else if(transform.position.y < startHeight)
+        {
+            flySpeedY = flySpeed;
         }
         else
         {
             flySpeedY = 0;
+            stoppedHunting = false;
         }
     }
 
@@ -194,7 +202,7 @@ public class EnemyMove : MonoBehaviour
         {
             //Set isHunting variable to stop hunting
             isHunting = false;
-            CheckHeight();
+            stoppedHunting = true;
         }
     }
     #endregion
