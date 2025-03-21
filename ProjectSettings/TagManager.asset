@@ -9,6 +9,7 @@ TagManager:
   - token
   - enemy
   - levelTrigger
+  - wall
   layers:
   - Default
   - TransparentFX

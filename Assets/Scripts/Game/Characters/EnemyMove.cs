@@ -11,17 +11,18 @@ public class EnemyMove : MonoBehaviour
     private Rigidbody2D body;
     private Animator animator;
 
-    private float direction = 1;
     [SerializeField] private float flySpeed = 4; //regular flying speed
     private float flySpeedY = 0; //regular vertical flying speed
+    private float direction = 1; //set base direction
     private float scaleFactor = 1.2f; //used to resize character model
+    private bool hitWall = false;
     private bool isTurning = false;
     private bool isHunting = false;
     private bool stoppedHunting = true;
     private float startHeight;
 
-    [SerializeField] private float leftBoundary = 2;
-    [SerializeField] private float rightBoundary = -2;
+    private float leftBoundary = 2;
+    private float rightBoundary = -2;
     private float minPauseTime = 0;
     private float maxPauseTime = 2;
     private float pauseTime;
@@ -58,7 +59,7 @@ public class EnemyMove : MonoBehaviour
     private void Update()
     {
         //Checks if the enemy has reached a specified boundary position
-        if(!isTurning && (transform.position.x > rightBoundary || transform.position.x < leftBoundary))
+        if(hitWall && (transform.position.x > rightBoundary || transform.position.x < leftBoundary))
         {
             StartCoroutine(ChangeDirection());
         }
@@ -92,6 +93,7 @@ public class EnemyMove : MonoBehaviour
     //Change direction of movement when triggered
     IEnumerator ChangeDirection()
     {
+        hitWall = false; // reset hitWall
         isTurning = true;
         yield return new WaitForSeconds(pauseTime);
         direction = direction*-1; //flips direction of movement
@@ -214,6 +216,12 @@ public class EnemyMove : MonoBehaviour
         {
             //Deduct one health point / heart from the player
             playerData.DeductHealth();
+        }
+
+        if(collision.gameObject.tag == "wall")
+        {
+            //Set hitWall value
+            hitWall = true;
         }
     }
     #endregion
