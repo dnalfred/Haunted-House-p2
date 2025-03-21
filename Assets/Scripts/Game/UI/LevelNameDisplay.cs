@@ -6,7 +6,7 @@ using TMPro;
 public class LevelNameDisplay : MonoBehaviour
 {
     private TMP_Text levelNameText;
-    private string[] levelNames = {"Entrance", "Grand Staircase", "Bedroom", "Library", "Kitchen"};
+    private string[] levelNames = {"Entrance", "Grand Staircase", "Second Floor", "Library", "Kitchen"};
 
     private void Awake()
     {

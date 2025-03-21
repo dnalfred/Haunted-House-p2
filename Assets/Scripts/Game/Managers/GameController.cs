@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     private float gemTimer = 0;
     private float gemHiddenTime = 6;
     private float gemShowTime = 3f;
-    private int finalLevelNo = 2;
+    private int finalLevelNo = 3;
 
     private void Awake()
     {
