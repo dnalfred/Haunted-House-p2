@@ -10,6 +10,7 @@ public class GemManager : MonoBehaviour, DataInterface
     
     private int itemPoints = 100; //points for each item collected
     [SerializeField] private string id;
+    [SerializeField] private bool isFake;
     public bool isCollected = false;
     public UnityEvent OnGemCollected;
     private float startingPosY;
@@ -48,12 +49,18 @@ public class GemManager : MonoBehaviour, DataInterface
 
     public void HideGem()
     {
-        gameObject.SetActive(false);
+        if(!isFake)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void ShowGem()
     {
-        gameObject.SetActive(true);
+        if(!isFake)
+        {
+            gameObject.SetActive(true);
+        }
     }
 
     [ContextMenu("Generate guid for id")]
@@ -83,7 +90,7 @@ public class GemManager : MonoBehaviour, DataInterface
     private void OnTriggerEnter2D(Collider2D collider)
     {
         //on collision with the player, the item is destroyed and player's score is increased
-        if(collider.gameObject.tag == "Player")
+        if(!isFake && collider.gameObject.tag == "Player")
         {
             //Play sound on collection
             SoundManager.instance.PlaySoundFXClip(SoundManager.instance.gemSound, transform);
