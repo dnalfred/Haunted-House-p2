@@ -5,6 +5,7 @@ using TMPro;
 
 public class LevelNameDisplay : MonoBehaviour
 {
+    [SerializeField] private int levelNumber;
     private TMP_Text levelNameText;
     private string[] levelNames = {"Entrance", "Grand Staircase", "Second Floor", "Library", "Kitchen"};
 
@@ -14,11 +15,16 @@ public class LevelNameDisplay : MonoBehaviour
         levelNameText = GetComponent<TMP_Text>();
     }
 
-    public void UpdateLevelName(PlayerData playerData)
+    private void Start()
     {
-        if(playerData.isLevelStart == 1)
-        {
-            levelNameText.text = levelNames[playerData.level-1];
-        }
+        levelNameText.text = levelNames[levelNumber-1];
     }
+
+    // public void UpdateLevelName(PlayerData playerData)
+    // {
+    //     if(playerData.isLevelStart == 1)
+    //     {
+    //         levelNameText.text = levelNames[playerData.level-1];
+    //     }
+    // }
 }

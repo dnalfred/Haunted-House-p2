@@ -5807,6 +5807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b9be51c1acf4143820f23ee9ee8631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNumber: 1
 --- !u!1 &1297131025
 GameObject:
   m_ObjectHideFlags: 0
@@ -7732,6 +7733,7 @@ MonoBehaviour:
   playerData: {fileID: 809298413}
   gameOverDisplay: {fileID: 493014416}
   timerDisplay: {fileID: 564957052}
+  levelNameDisplay: {fileID: 1291514092}
   gemManager: {fileID: 773742212}
 --- !u!1 &1761764449
 GameObject:
