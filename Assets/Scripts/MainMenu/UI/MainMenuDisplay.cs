@@ -17,7 +17,6 @@ public class MainMenuDisplay : MonoBehaviour
     //For Menu Play button
     public void PlayButton()
     {
-        SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
         if(menuController.isFirstLaunch)
         {
             menuController.FirstLaunchPlaying();
@@ -26,6 +25,7 @@ public class MainMenuDisplay : MonoBehaviour
         }
         else
         {
+            SoundManager.instance.PlaySoundFXClip(SoundManager.instance.buttonSound, transform);
             SceneManager.LoadScene ("Level1", LoadSceneMode.Single);
         }
     }
