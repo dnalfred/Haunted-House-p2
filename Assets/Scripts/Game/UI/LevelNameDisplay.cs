@@ -7,7 +7,7 @@ public class LevelNameDisplay : MonoBehaviour
 {
     [SerializeField] private int levelNumber;
     private TMP_Text levelNameText;
-    private string[] levelNames = {"Entrance", "Grand Staircase", "Second Floor", "Library", "Kitchen"};
+    private string[] levelNames = {"Entrance", "Grand Staircase", "Back Door", "Library", "Kitchen"};
 
     private void Awake()
     {
