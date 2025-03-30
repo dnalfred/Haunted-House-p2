@@ -19,15 +19,5 @@ Jet Set Willy - the classic ZX Spectrum game
 - Atmospheric game levels with different paths and objects to explore / find.
 - Challenging enemies which may be avoided or defeated using different strategies.
 
-## PLay the Game!
-The game is available at [insert url when available]. Hit "Run Game" to start the game.
-
 ## How to Play
-[Coming soon]
-
-## Credits
-Imported assets include:
-[Coming soon]
-
-## Additional Notes
-[Coming soon]
+Just use the arrow keys - Up / Jump, Down, Left and Right!
